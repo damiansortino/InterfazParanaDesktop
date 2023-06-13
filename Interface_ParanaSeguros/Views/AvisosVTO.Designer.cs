@@ -48,6 +48,7 @@ namespace Interface_ParanaSeguros.Views
             this.text_Mensaje = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_EnviarMsjs = new System.Windows.Forms.Button();
+            this.btn_ActualizarTelefono = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.gb.SuspendLayout();
             this.SuspendLayout();
@@ -59,9 +60,13 @@ namespace Interface_ParanaSeguros.Views
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(3, 16);
             this.dgv.Name = "dgv";
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(1074, 213);
             this.dgv.TabIndex = 0;
             this.dgv.Visible = false;
+            this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
+            this.dgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgv_RowsAdded);
+            this.dgv.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgv_MouseClick);
             // 
             // gb
             // 
@@ -231,12 +236,24 @@ namespace Interface_ParanaSeguros.Views
             this.btn_EnviarMsjs.UseVisualStyleBackColor = false;
             this.btn_EnviarMsjs.Click += new System.EventHandler(this.btn_EnviarMsjs_Click);
             // 
+            // btn_ActualizarTelefono
+            // 
+            this.btn_ActualizarTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(237)))), ((int)(((byte)(228)))));
+            this.btn_ActualizarTelefono.Location = new System.Drawing.Point(135, 165);
+            this.btn_ActualizarTelefono.Name = "btn_ActualizarTelefono";
+            this.btn_ActualizarTelefono.Size = new System.Drawing.Size(136, 31);
+            this.btn_ActualizarTelefono.TabIndex = 25;
+            this.btn_ActualizarTelefono.Text = "actualizar telefono";
+            this.btn_ActualizarTelefono.UseVisualStyleBackColor = false;
+            this.btn_ActualizarTelefono.Click += new System.EventHandler(this.btn_ActualizarTelefono_Click);
+            // 
             // AvisosVTO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cerrar;
             this.ClientSize = new System.Drawing.Size(1080, 434);
+            this.Controls.Add(this.btn_ActualizarTelefono);
             this.Controls.Add(this.btn_EnviarMsjs);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.text_Mensaje);
@@ -287,5 +304,6 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.RichTextBox text_Mensaje;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_EnviarMsjs;
+        private System.Windows.Forms.Button btn_ActualizarTelefono;
     }
 }

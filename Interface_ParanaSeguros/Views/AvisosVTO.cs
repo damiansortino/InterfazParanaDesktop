@@ -3,6 +3,7 @@ using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -252,6 +253,8 @@ namespace Interface_ParanaSeguros.Views
         private void AvisosVTO_Load(object sender, EventArgs e)
         {
             dtp_fecha.Value = DateTime.Now.Date;
+            dtp_Vto_Cuota.Value = DateTime.Now.Date;
+            btn_ActualizarTelefono.Enabled = false;
         }
 
         private void btn_Refacturaciones_Click(object sender, EventArgs e)
@@ -354,11 +357,6 @@ namespace Interface_ParanaSeguros.Views
 
                 MessageBox.Show("Error en btn Refactu 10 \n" + ex.Message);
             }
-        }
-
-        private void btn_VtosPoliza_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
@@ -519,6 +517,78 @@ namespace Interface_ParanaSeguros.Views
 
 
 
+            }
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                using (MartinaPASEntities DB = new MartinaPASEntities())
+                {
+                    if (dgv.Columns[e.ColumnIndex].Name == "Poliza" && e.Value != null)
+                    {
+
+                        string poliza = e.Value.ToString();
+                        int Idcliente = DB.Polizas.ToList().Find(x => x.NumeroPoliza == poliza).IdCliente;
+                        string telcliente = DB.Clientes.Find(Idcliente).Telefono;
+
+                        if (telcliente is null || telcliente.Length <= 4)
+                        {
+                            dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(38, 237, 228); // Color de fondo RGB (174, 214, 12)
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error dibujando datagridview \n" + ex.Message);
+            }
+        }
+
+        private void btn_ActualizarTelefono_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MartinaPASEntities DB = new MartinaPASEntities())
+                {
+                    int idcliente = DB.Polizas.ToList().Find(x => x.NumeroPoliza == dgv.CurrentRow.Cells[0].Value.ToString()).IdCliente;
+                    EditCliente editarcliente = new EditCliente(DB.Clientes.Find(idcliente));
+                    editarcliente.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error btn actualziar teléfono \n" + ex.Message);
+            }
+        }
+
+        private void dgv_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                btn_ActualizarTelefono.Enabled = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void dgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            try
+            {
+                dgv.Rows[e.RowIndex].ReadOnly = true;
+                dgv.Rows[e.RowIndex].Cells["Enviar"].ReadOnly = false;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

@@ -51,6 +51,8 @@ namespace Interface_ParanaSeguros
             this.label3 = new System.Windows.Forms.Label();
             this.btn_okvaciar = new System.Windows.Forms.Button();
             this.gb_Vaciar = new System.Windows.Forms.GroupBox();
+            this.btn_Polizas = new System.Windows.Forms.Button();
+            this.btn_Caja = new System.Windows.Forms.Button();
             this.gb_Interfaces.SuspendLayout();
             this.gb_Vaciar.SuspendLayout();
             this.SuspendLayout();
@@ -187,7 +189,7 @@ namespace Interface_ParanaSeguros
             this.gb_Interfaces.Controls.Add(this.btn_Examinar_2);
             this.gb_Interfaces.Location = new System.Drawing.Point(12, 165);
             this.gb_Interfaces.Name = "gb_Interfaces";
-            this.gb_Interfaces.Size = new System.Drawing.Size(981, 306);
+            this.gb_Interfaces.Size = new System.Drawing.Size(831, 306);
             this.gb_Interfaces.TabIndex = 12;
             this.gb_Interfaces.TabStop = false;
             this.gb_Interfaces.Text = "Interfaces";
@@ -272,12 +274,36 @@ namespace Interface_ParanaSeguros
             this.gb_Vaciar.TabStop = false;
             this.gb_Vaciar.Visible = false;
             // 
+            // btn_Polizas
+            // 
+            this.btn_Polizas.Location = new System.Drawing.Point(182, 86);
+            this.btn_Polizas.Name = "btn_Polizas";
+            this.btn_Polizas.Size = new System.Drawing.Size(164, 32);
+            this.btn_Polizas.TabIndex = 19;
+            this.btn_Polizas.Text = "Pólizas";
+            this.btn_Polizas.UseVisualStyleBackColor = true;
+            this.btn_Polizas.Click += new System.EventHandler(this.btn_Polizas_Click);
+            // 
+            // btn_Caja
+            // 
+            this.btn_Caja.BackgroundImage = global::Interface_ParanaSeguros.Properties.Resources.btn_verde;
+            this.btn_Caja.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Caja.Location = new System.Drawing.Point(352, 86);
+            this.btn_Caja.Name = "btn_Caja";
+            this.btn_Caja.Size = new System.Drawing.Size(164, 32);
+            this.btn_Caja.TabIndex = 20;
+            this.btn_Caja.Text = "Caja";
+            this.btn_Caja.UseVisualStyleBackColor = true;
+            this.btn_Caja.Click += new System.EventHandler(this.btn_Caja_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1005, 523);
+            this.ClientSize = new System.Drawing.Size(1264, 749);
+            this.Controls.Add(this.btn_Caja);
+            this.Controls.Add(this.btn_Polizas);
             this.Controls.Add(this.gb_Vaciar);
             this.Controls.Add(this.btn_Clientes);
             this.Controls.Add(this.button1);
@@ -290,6 +316,7 @@ namespace Interface_ParanaSeguros
             this.Controls.Add(this.btnCancelar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MaximizeBox = false;
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -326,6 +353,8 @@ namespace Interface_ParanaSeguros
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_okvaciar;
         private System.Windows.Forms.GroupBox gb_Vaciar;
+        private System.Windows.Forms.Button btn_Polizas;
+        private System.Windows.Forms.Button btn_Caja;
     }
 }
 

@@ -32,12 +32,7 @@ namespace Interface_ParanaSeguros.Views
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AvisosVTO));
             this.dgv = new System.Windows.Forms.DataGridView();
             this.gb = new System.Windows.Forms.GroupBox();
-            this.btn_Vto7dias = new System.Windows.Forms.Button();
-            this.btn_VtoHoy = new System.Windows.Forms.Button();
-            this.btn_7diasvencido = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
-            this.btn_Refacturaciones = new System.Windows.Forms.Button();
-            this.btn_Refactu_10dias = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
             this.dtp_fecha = new System.Windows.Forms.DateTimePicker();
             this.btn_Buscar = new System.Windows.Forms.Button();
@@ -49,6 +44,8 @@ namespace Interface_ParanaSeguros.Views
             this.label3 = new System.Windows.Forms.Label();
             this.btn_EnviarMsjs = new System.Windows.Forms.Button();
             this.btn_ActualizarTelefono = new System.Windows.Forms.Button();
+            this.btn_Tildar = new System.Windows.Forms.Button();
+            this.btn_Destildar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.gb.SuspendLayout();
             this.SuspendLayout();
@@ -72,81 +69,32 @@ namespace Interface_ParanaSeguros.Views
             // 
             this.gb.Controls.Add(this.dgv);
             this.gb.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gb.Location = new System.Drawing.Point(0, 202);
+            this.gb.Location = new System.Drawing.Point(0, 297);
             this.gb.Name = "gb";
             this.gb.Size = new System.Drawing.Size(1080, 232);
             this.gb.TabIndex = 1;
             this.gb.TabStop = false;
             this.gb.Text = "Listado";
             // 
-            // btn_Vto7dias
-            // 
-            this.btn_Vto7dias.Location = new System.Drawing.Point(528, 9);
-            this.btn_Vto7dias.Name = "btn_Vto7dias";
-            this.btn_Vto7dias.Size = new System.Drawing.Size(120, 52);
-            this.btn_Vto7dias.TabIndex = 2;
-            this.btn_Vto7dias.Text = "Vencimiento próximos 7 días";
-            this.btn_Vto7dias.UseVisualStyleBackColor = true;
-            this.btn_Vto7dias.Click += new System.EventHandler(this.btn_Vto7dias_Click);
-            // 
-            // btn_VtoHoy
-            // 
-            this.btn_VtoHoy.Location = new System.Drawing.Point(396, 9);
-            this.btn_VtoHoy.Name = "btn_VtoHoy";
-            this.btn_VtoHoy.Size = new System.Drawing.Size(120, 52);
-            this.btn_VtoHoy.TabIndex = 3;
-            this.btn_VtoHoy.Text = "Vencimientos hoy";
-            this.btn_VtoHoy.UseVisualStyleBackColor = true;
-            this.btn_VtoHoy.Click += new System.EventHandler(this.btn_VtoHoy_Click);
-            // 
-            // btn_7diasvencido
-            // 
-            this.btn_7diasvencido.BackColor = System.Drawing.Color.OrangeRed;
-            this.btn_7diasvencido.Location = new System.Drawing.Point(654, 9);
-            this.btn_7diasvencido.Name = "btn_7diasvencido";
-            this.btn_7diasvencido.Size = new System.Drawing.Size(120, 52);
-            this.btn_7diasvencido.TabIndex = 5;
-            this.btn_7diasvencido.Text = "7 días vencido";
-            this.btn_7diasvencido.UseVisualStyleBackColor = false;
-            this.btn_7diasvencido.Click += new System.EventHandler(this.btn_7diasvencido_Click);
-            // 
             // btn_Cerrar
             // 
             this.btn_Cerrar.BackColor = System.Drawing.Color.Red;
             this.btn_Cerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cerrar.Location = new System.Drawing.Point(1013, 9);
+            this.btn_Cerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cerrar.Location = new System.Drawing.Point(998, 9);
             this.btn_Cerrar.Name = "btn_Cerrar";
-            this.btn_Cerrar.Size = new System.Drawing.Size(55, 31);
+            this.btn_Cerrar.Size = new System.Drawing.Size(70, 31);
             this.btn_Cerrar.TabIndex = 10;
             this.btn_Cerrar.Text = "Cerrar";
             this.btn_Cerrar.UseVisualStyleBackColor = false;
             this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
             // 
-            // btn_Refacturaciones
-            // 
-            this.btn_Refacturaciones.Location = new System.Drawing.Point(185, 12);
-            this.btn_Refacturaciones.Name = "btn_Refacturaciones";
-            this.btn_Refacturaciones.Size = new System.Drawing.Size(120, 47);
-            this.btn_Refacturaciones.TabIndex = 13;
-            this.btn_Refacturaciones.Text = "Refacturaciones hoy";
-            this.btn_Refacturaciones.UseVisualStyleBackColor = true;
-            this.btn_Refacturaciones.Click += new System.EventHandler(this.btn_Refacturaciones_Click);
-            // 
-            // btn_Refactu_10dias
-            // 
-            this.btn_Refactu_10dias.Location = new System.Drawing.Point(12, 11);
-            this.btn_Refactu_10dias.Name = "btn_Refactu_10dias";
-            this.btn_Refactu_10dias.Size = new System.Drawing.Size(120, 48);
-            this.btn_Refactu_10dias.TabIndex = 15;
-            this.btn_Refactu_10dias.Text = "Refacturaciones 10 dias";
-            this.btn_Refactu_10dias.UseVisualStyleBackColor = true;
-            this.btn_Refactu_10dias.Click += new System.EventHandler(this.btn_Refactu_10dias_Click);
-            // 
             // btnExcel
             // 
             this.btnExcel.BackgroundImage = global::Interface_ParanaSeguros.Properties.Resources.excel;
             this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExcel.Location = new System.Drawing.Point(450, 70);
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.Location = new System.Drawing.Point(826, 12);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(66, 70);
             this.btnExcel.TabIndex = 12;
@@ -155,17 +103,19 @@ namespace Interface_ParanaSeguros.Views
             // 
             // dtp_fecha
             // 
+            this.dtp_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha.Location = new System.Drawing.Point(15, 120);
+            this.dtp_fecha.Location = new System.Drawing.Point(28, 59);
             this.dtp_fecha.Name = "dtp_fecha";
-            this.dtp_fecha.Size = new System.Drawing.Size(105, 20);
+            this.dtp_fecha.Size = new System.Drawing.Size(105, 24);
             this.dtp_fecha.TabIndex = 16;
             // 
             // btn_Buscar
             // 
-            this.btn_Buscar.Location = new System.Drawing.Point(135, 118);
+            this.btn_Buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Buscar.Location = new System.Drawing.Point(150, 57);
             this.btn_Buscar.Name = "btn_Buscar";
-            this.btn_Buscar.Size = new System.Drawing.Size(55, 28);
+            this.btn_Buscar.Size = new System.Drawing.Size(66, 28);
             this.btn_Buscar.TabIndex = 17;
             this.btn_Buscar.Text = "Buscar";
             this.btn_Buscar.UseVisualStyleBackColor = true;
@@ -174,26 +124,29 @@ namespace Interface_ParanaSeguros.Views
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 83);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(25, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 13);
+            this.label2.Size = new System.Drawing.Size(167, 18);
             this.label2.TabIndex = 18;
             this.label2.Text = "Buscar Refacturaciones";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(260, 83);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(290, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.Size = new System.Drawing.Size(129, 18);
             this.label1.TabIndex = 21;
             this.label1.Text = "Buscar Vto. Cuota";
             // 
             // btn_BuscarVtoCuota
             // 
-            this.btn_BuscarVtoCuota.Location = new System.Drawing.Point(383, 118);
+            this.btn_BuscarVtoCuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BuscarVtoCuota.Location = new System.Drawing.Point(415, 57);
             this.btn_BuscarVtoCuota.Name = "btn_BuscarVtoCuota";
-            this.btn_BuscarVtoCuota.Size = new System.Drawing.Size(55, 28);
+            this.btn_BuscarVtoCuota.Size = new System.Drawing.Size(65, 28);
             this.btn_BuscarVtoCuota.TabIndex = 20;
             this.btn_BuscarVtoCuota.Text = "Buscar";
             this.btn_BuscarVtoCuota.UseVisualStyleBackColor = true;
@@ -201,26 +154,29 @@ namespace Interface_ParanaSeguros.Views
             // 
             // dtp_Vto_Cuota
             // 
+            this.dtp_Vto_Cuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_Vto_Cuota.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_Vto_Cuota.Location = new System.Drawing.Point(263, 120);
+            this.dtp_Vto_Cuota.Location = new System.Drawing.Point(292, 59);
             this.dtp_Vto_Cuota.Name = "dtp_Vto_Cuota";
-            this.dtp_Vto_Cuota.Size = new System.Drawing.Size(105, 20);
+            this.dtp_Vto_Cuota.Size = new System.Drawing.Size(105, 24);
             this.dtp_Vto_Cuota.TabIndex = 19;
             // 
             // text_Mensaje
             // 
+            this.text_Mensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.text_Mensaje.Location = new System.Drawing.Point(578, 94);
             this.text_Mensaje.Name = "text_Mensaje";
-            this.text_Mensaje.Size = new System.Drawing.Size(449, 61);
+            this.text_Mensaje.Size = new System.Drawing.Size(449, 108);
             this.text_Mensaje.TabIndex = 22;
             this.text_Mensaje.Text = resources.GetString("text_Mensaje.Text");
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(575, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.Size = new System.Drawing.Size(119, 18);
             this.label3.TabIndex = 23;
             this.label3.Text = "Mensaje a enviar";
             // 
@@ -228,7 +184,8 @@ namespace Interface_ParanaSeguros.Views
             // 
             this.btn_EnviarMsjs.BackColor = System.Drawing.Color.LimeGreen;
             this.btn_EnviarMsjs.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_EnviarMsjs.Location = new System.Drawing.Point(578, 161);
+            this.btn_EnviarMsjs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EnviarMsjs.Location = new System.Drawing.Point(578, 223);
             this.btn_EnviarMsjs.Name = "btn_EnviarMsjs";
             this.btn_EnviarMsjs.Size = new System.Drawing.Size(111, 31);
             this.btn_EnviarMsjs.TabIndex = 24;
@@ -239,20 +196,45 @@ namespace Interface_ParanaSeguros.Views
             // btn_ActualizarTelefono
             // 
             this.btn_ActualizarTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(237)))), ((int)(((byte)(228)))));
-            this.btn_ActualizarTelefono.Location = new System.Drawing.Point(135, 165);
+            this.btn_ActualizarTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ActualizarTelefono.Location = new System.Drawing.Point(5, 260);
             this.btn_ActualizarTelefono.Name = "btn_ActualizarTelefono";
-            this.btn_ActualizarTelefono.Size = new System.Drawing.Size(136, 31);
+            this.btn_ActualizarTelefono.Size = new System.Drawing.Size(241, 31);
             this.btn_ActualizarTelefono.TabIndex = 25;
-            this.btn_ActualizarTelefono.Text = "actualizar telefono";
+            this.btn_ActualizarTelefono.Text = "actualizar telefono del cliente";
             this.btn_ActualizarTelefono.UseVisualStyleBackColor = false;
             this.btn_ActualizarTelefono.Click += new System.EventHandler(this.btn_ActualizarTelefono_Click);
+            // 
+            // btn_Tildar
+            // 
+            this.btn_Tildar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Tildar.Location = new System.Drawing.Point(804, 260);
+            this.btn_Tildar.Name = "btn_Tildar";
+            this.btn_Tildar.Size = new System.Drawing.Size(129, 31);
+            this.btn_Tildar.TabIndex = 28;
+            this.btn_Tildar.Text = "Tildar todos";
+            this.btn_Tildar.UseVisualStyleBackColor = true;
+            this.btn_Tildar.Click += new System.EventHandler(this.btn_Tildar_Click_1);
+            // 
+            // btn_Destildar
+            // 
+            this.btn_Destildar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Destildar.Location = new System.Drawing.Point(939, 260);
+            this.btn_Destildar.Name = "btn_Destildar";
+            this.btn_Destildar.Size = new System.Drawing.Size(129, 31);
+            this.btn_Destildar.TabIndex = 29;
+            this.btn_Destildar.Text = "Destildar todos";
+            this.btn_Destildar.UseVisualStyleBackColor = true;
+            this.btn_Destildar.Click += new System.EventHandler(this.btn_Destildar_Click_1);
             // 
             // AvisosVTO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cerrar;
-            this.ClientSize = new System.Drawing.Size(1080, 434);
+            this.ClientSize = new System.Drawing.Size(1080, 529);
+            this.Controls.Add(this.btn_Destildar);
+            this.Controls.Add(this.btn_Tildar);
             this.Controls.Add(this.btn_ActualizarTelefono);
             this.Controls.Add(this.btn_EnviarMsjs);
             this.Controls.Add(this.label3);
@@ -263,13 +245,8 @@ namespace Interface_ParanaSeguros.Views
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_Buscar);
             this.Controls.Add(this.dtp_fecha);
-            this.Controls.Add(this.btn_Refactu_10dias);
-            this.Controls.Add(this.btn_Refacturaciones);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.btn_Cerrar);
-            this.Controls.Add(this.btn_7diasvencido);
-            this.Controls.Add(this.btn_VtoHoy);
-            this.Controls.Add(this.btn_Vto7dias);
             this.Controls.Add(this.gb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -288,13 +265,8 @@ namespace Interface_ParanaSeguros.Views
 
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.GroupBox gb;
-        private System.Windows.Forms.Button btn_Vto7dias;
-        private System.Windows.Forms.Button btn_VtoHoy;
-        private System.Windows.Forms.Button btn_7diasvencido;
         private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.Button btn_Refacturaciones;
-        private System.Windows.Forms.Button btn_Refactu_10dias;
         private System.Windows.Forms.DateTimePicker dtp_fecha;
         private System.Windows.Forms.Button btn_Buscar;
         private System.Windows.Forms.Label label2;
@@ -305,5 +277,7 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_EnviarMsjs;
         private System.Windows.Forms.Button btn_ActualizarTelefono;
+        private System.Windows.Forms.Button btn_Tildar;
+        private System.Windows.Forms.Button btn_Destildar;
     }
 }

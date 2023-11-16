@@ -54,7 +54,6 @@ D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_Parana
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.Agregar_Recibos.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.AvisosVTO.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.EditCliente.resources
-D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.FormClientes.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.Planillas_Cobranzas.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.RecibosCobrados.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\MartinaPasDesktop.csproj.GenerateResource.cache
@@ -64,3 +63,9 @@ D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_Parana
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\MartinaPasDesktop.csproj.CopyComplete
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.exe
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.pdb
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.InterfaceTelefonosForm.resources
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.Clientes_Form.resources
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.PolizasForm.resources
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.IngresoReciboManual.resources
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.Caja.resources
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.Interfaces_Parana.resources

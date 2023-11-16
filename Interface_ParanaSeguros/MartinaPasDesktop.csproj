@@ -142,6 +142,7 @@
     <Compile Include="Models\Cuotas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EndosoDGV.cs" />
     <Compile Include="Models\Endosos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -163,6 +164,7 @@
     <Compile Include="Models\Movimientos_Caja.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PolizaDGV.cs" />
     <Compile Include="Models\Recibo_Planilla.cs" />
     <Compile Include="Models\Polizas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -200,23 +202,53 @@
     <Compile Include="Views\AvisosVTO.Designer.cs">
       <DependentUpon>AvisosVTO.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\EditCliente.Designer.cs">
       <DependentUpon>EditCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormClientes.cs">
+    <Compile Include="Views\Clientes_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormClientes.Designer.cs">
-      <DependentUpon>FormClientes.cs</DependentUpon>
+    <Compile Include="Views\Clientes_Form.Designer.cs">
+      <DependentUpon>Clientes_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IngresoReciboManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IngresoReciboManual.Designer.cs">
+      <DependentUpon>IngresoReciboManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Interfaces_Parana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Interfaces_Parana.Designer.cs">
+      <DependentUpon>Interfaces_Parana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InterfaceTelefonosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InterfaceTelefonosForm.Designer.cs">
+      <DependentUpon>InterfaceTelefonosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Planillas_Cobranzas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Planillas_Cobranzas.Designer.cs">
       <DependentUpon>Planillas_Cobranzas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PolizasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PolizasForm.Designer.cs">
+      <DependentUpon>PolizasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PolizasView.cs">
       <SubType>Form</SubType>
@@ -249,14 +281,29 @@
     <EmbeddedResource Include="Views\AvisosVTO.resx">
       <DependentUpon>AvisosVTO.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EditCliente.resx">
       <DependentUpon>EditCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormClientes.resx">
-      <DependentUpon>FormClientes.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Clientes_Form.resx">
+      <DependentUpon>Clientes_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\IngresoReciboManual.resx">
+      <DependentUpon>IngresoReciboManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Interfaces_Parana.resx">
+      <DependentUpon>Interfaces_Parana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InterfaceTelefonosForm.resx">
+      <DependentUpon>InterfaceTelefonosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Planillas_Cobranzas.resx">
       <DependentUpon>Planillas_Cobranzas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PolizasForm.resx">
+      <DependentUpon>PolizasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecibosCobrados.resx">
       <DependentUpon>RecibosCobrados.cs</DependentUpon>
@@ -291,9 +338,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icono.ico" />
+    <None Include="img\btn_verde.png" />
     <Content Include="img\excel.png" />
     <Content Include="img\icono.ico" />
     <Content Include="img\logo_sinfondo.png" />
+    <None Include="img\wallpaper_caja.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

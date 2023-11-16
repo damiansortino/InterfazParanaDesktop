@@ -347,6 +347,9 @@ namespace Interface_ParanaSeguros.Views
         {
             try
             {
+
+                mostrar.Clear();
+
                 using (MartinaPASEntities DB = new MartinaPASEntities())
                 {
                     DateTime convenio_pasado;
@@ -371,7 +374,7 @@ namespace Interface_ParanaSeguros.Views
                         convenio_pasado = new DateTime(fechaActual.Year, fechaActual.Month, 18);
                     }
 
-
+                    /*
                     var query = from a in DB.Recibos
                                 join b in DB.Cuotas on a.idcuota equals b.id
                                 join c in DB.Endosos on b.idendoso equals c.id
@@ -394,17 +397,39 @@ namespace Interface_ParanaSeguros.Views
                                     Auto = g.Nombre,
                                     Agregar = true
                                 };
+
+                    */
+
+                    var query = from a in DB.Recibos
+                                join b in DB.Cuotas on a.idcuota equals b.id
+                                where (b.convenio <= convenio_pasado && a.fechabaja == null)
+                                select new
+                                {
+                                    IdRecibo = a.IdRecibo
+                                };
+
                     var result = query.ToList();
+
+                    foreach (var item in result)
+                    {
+                        Recibos recibo = DB.Recibos.Find(item.IdRecibo);
+                        ReciboDGV nuevo = new ReciboDGV(recibo);
+                        mostrar.Add(nuevo);
+                    }
+
+                    mostrar.OrderBy(ReciboDGV => ReciboDGV.Cliente);
+
+
                     dgv.DataSource = null;
-                    dgv.DataSource = result;
+                    dgv.DataSource = mostrar;
                     groupBox1.Visible = true;
 
 
                     //llenar labels
                     decimal suma = 0;
-                    foreach (var valor in result)
+                    foreach (ReciboDGV reca in mostrar)
                     {
-                        suma = suma + valor.importe;
+                        suma = suma + reca.Importe;
                     }
 
                     lbl_Suma.Text = "Total $ " + suma.ToString();
@@ -436,6 +461,7 @@ namespace Interface_ParanaSeguros.Views
                 btn_GenerarPlanilla.Enabled = false;
 
                 List<Recibo_Planilla> recibos_rendir = new List<Recibo_Planilla>();
+                List<ReciboDGV> listadodgv = new List<ReciboDGV>();
 
                 foreach (DataGridViewRow item in dgv.Rows)
                 {
@@ -443,6 +469,7 @@ namespace Interface_ParanaSeguros.Views
                     {
                         Recibo_Planilla nuevo = new Recibo_Planilla(item);
                         recibos_rendir.Add(nuevo);
+                        listadodgv.Add((ReciboDGV)item.DataBoundItem);
                     }
                 }
 
@@ -458,18 +485,40 @@ namespace Interface_ParanaSeguros.Views
                     var linea = "rama;poliza;endoso;importe;cuota";
                     lineas.Add(linea);
 
-                    foreach (var recibo in recibos_rendir)
+
+                    foreach (var recibo in listadodgv)
                     {
-                        var lineaitera = $"{recibo.rama};{recibo.poliza};{recibo.endoso};{recibo.importe};{recibo.cuota}";
+
+                        var lineaitera = $"{recibo.barra.Substring(20, 2)};{recibo.barra.Substring(22, 8)};" +
+                            $"{recibo.barra.Substring(34, 2)};{recibo.barra.Substring(5, 7) + "." + recibo.barra.Substring(12, 2)};" +
+                            $"{recibo.barra.Substring(36, 2)}";
+
                         lineas.Add(lineaitera);
                     }
+
+                    /*
+                    foreach (var recibo in recibos_rendir)
+                    {
+                        
+                         codigo_barra = barra;
+
+                        rama = codigo_barra.Substring(20, 2);
+                        poliza = codigo_barra.Substring(22, 8);
+                        endoso = codigo_barra.Substring(34, 2);
+                        importe = codigo_barra.Substring(5, 7)+"."+codigo_barra.Substring(12, 2);
+                        cuota = codigo_barra.Substring(36, 2);
+
+                        var lineaitera = $"{recibo.rama};{recibo.poliza};{recibo.endoso};{recibo.importe};{recibo.cuota}";
+                        
+                        lineas.Add(lineaitera);
+                    }
+                    */
+
                     File.WriteAllLines(saveFileDialog1.FileName, lineas);
 
                     dgv.DataSource = null;
                     MessageBox.Show("Archivo guardado exitosamente.");
                 }
-
-
 
             }
             catch (Exception ex)

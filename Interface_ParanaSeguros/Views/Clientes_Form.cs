@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Interface_ParanaSeguros.Views
 {
-    public partial class FormClientes : Form
+    public partial class Clientes_Form : Form
     {
-        public FormClientes()
+        public Clientes_Form()
         {
             InitializeComponent();
         }
@@ -182,6 +182,13 @@ namespace Interface_ParanaSeguros.Views
                 btn_filtrar.PerformClick();
                 e.Handled = true;
             }
+        }
+
+        private void btn_InterfaceTelefonos_Click(object sender, EventArgs e)
+        {
+            InterfaceTelefonosForm inter = new InterfaceTelefonosForm();
+            inter.ShowDialog();
+            btn_MostrarTodos.PerformClick();
         }
     }
 }

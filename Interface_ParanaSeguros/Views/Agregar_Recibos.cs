@@ -297,5 +297,11 @@ namespace Interface_ParanaSeguros.Views
                 MessageBox.Show("Problemas para agregar recibos a la base de datos" + "\n \n" + ex.Message);
             }
         }
+
+        private void btn_IngresoManual_Click(object sender, EventArgs e)
+        {
+            IngresoReciboManual form = new IngresoReciboManual();
+            form.ShowDialog();
+        }
     }
 }

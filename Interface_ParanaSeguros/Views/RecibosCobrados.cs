@@ -50,6 +50,7 @@ namespace Interface_ParanaSeguros.Views
                         lista.Add(nuevo);
                     }
 
+                    lista = lista.OrderBy(ReciboDGV => ReciboDGV.Cliente).ToList();
 
                     dgv.DataSource = null;
                     dgv.DataSource = lista;
@@ -141,6 +142,8 @@ namespace Interface_ParanaSeguros.Views
                         ReciboDGV nuevo = new ReciboDGV(rec);
                         listamostrar.Add(nuevo);
                     }
+
+                    listamostrar = listamostrar.OrderBy(ReciboDGV => ReciboDGV.Cliente).ToList();
 
                     dgv.DataSource = listamostrar;
 
@@ -240,7 +243,8 @@ namespace Interface_ParanaSeguros.Views
                                     poliza = d.NumeroPoliza,
                                     endoso = c.endoso,
                                     importe = a.Importe,
-                                    cuota = b.numero
+                                    cuota = b.numero,
+                                    barra = a.codigobarra
                                 };
                     var result = query.ToList();
 
@@ -255,12 +259,15 @@ namespace Interface_ParanaSeguros.Views
                             lineas.Add(line);
                         }
                     }
+
+                    // revisar aquí el procesador de planillas rendidas
+
                     foreach (string linea in lineas)
                     {
                         var values = linea.Split(';');
                         foreach (var item in result)
                         {
-                            if ((item.poliza == values[1] && item.endoso == int.Parse(values[2])) && item.cuota == int.Parse(values[4]))
+                            if (((int.Parse(item.barra.Substring(22, 8)).ToString()) == values[1] && item.endoso == int.Parse(values[2])) && item.cuota == int.Parse(values[4]))
                             {
                                 Recibos nuevo = DB.Recibos.Find(item.id);
                                 recibos.Add(nuevo);

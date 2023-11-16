@@ -33,6 +33,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgv_Recibos = new System.Windows.Forms.DataGridView();
             this.btn_Agregar = new System.Windows.Forms.Button();
             this.btn_Cancelar = new System.Windows.Forms.Button();
+            this.btn_IngresoManual = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Recibos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@ namespace Interface_ParanaSeguros.Views
             // 
             this.btn_Agregar.Location = new System.Drawing.Point(489, 12);
             this.btn_Agregar.Name = "btn_Agregar";
-            this.btn_Agregar.Size = new System.Drawing.Size(146, 53);
+            this.btn_Agregar.Size = new System.Drawing.Size(96, 66);
             this.btn_Agregar.TabIndex = 2;
             this.btn_Agregar.Text = "Agregar los recibos seleccionados";
             this.btn_Agregar.UseVisualStyleBackColor = true;
@@ -76,12 +77,23 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Cancelar.UseVisualStyleBackColor = false;
             this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);
             // 
+            // btn_IngresoManual
+            // 
+            this.btn_IngresoManual.Location = new System.Drawing.Point(591, 12);
+            this.btn_IngresoManual.Name = "btn_IngresoManual";
+            this.btn_IngresoManual.Size = new System.Drawing.Size(93, 66);
+            this.btn_IngresoManual.TabIndex = 4;
+            this.btn_IngresoManual.Text = "ingreso Manual";
+            this.btn_IngresoManual.UseVisualStyleBackColor = true;
+            this.btn_IngresoManual.Click += new System.EventHandler(this.btn_IngresoManual_Click);
+            // 
             // Agregar_Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cancelar;
             this.ClientSize = new System.Drawing.Size(975, 599);
+            this.Controls.Add(this.btn_IngresoManual);
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.btn_Agregar);
             this.Controls.Add(this.dgv_Recibos);
@@ -103,5 +115,6 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.DataGridView dgv_Recibos;
         private System.Windows.Forms.Button btn_Agregar;
         private System.Windows.Forms.Button btn_Cancelar;
+        private System.Windows.Forms.Button btn_IngresoManual;
     }
 }

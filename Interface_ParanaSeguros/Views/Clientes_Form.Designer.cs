@@ -1,7 +1,7 @@
 ﻿
 namespace Interface_ParanaSeguros.Views
 {
-    partial class FormClientes
+    partial class Clientes_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,8 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Editar = new System.Windows.Forms.Button();
             this.btn_MostrarTodos = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
+            this.btn_InterfaceTelefonos = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gb_filtro.SuspendLayout();
@@ -53,7 +55,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1100, 344);
+            this.dgv.Size = new System.Drawing.Size(1100, 295);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -61,9 +63,9 @@ namespace Interface_ParanaSeguros.Views
             // 
             this.groupBox1.Controls.Add(this.dgv);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 123);
+            this.groupBox1.Location = new System.Drawing.Point(0, 172);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1106, 363);
+            this.groupBox1.Size = new System.Drawing.Size(1106, 314);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Clientes";
@@ -74,7 +76,7 @@ namespace Interface_ParanaSeguros.Views
             this.gb_filtro.Controls.Add(this.tb_filtro);
             this.gb_filtro.Controls.Add(this.radio_cliente);
             this.gb_filtro.Controls.Add(this.btn_filtrar);
-            this.gb_filtro.Location = new System.Drawing.Point(306, 12);
+            this.gb_filtro.Location = new System.Drawing.Point(12, 86);
             this.gb_filtro.Name = "gb_filtro";
             this.gb_filtro.Size = new System.Drawing.Size(342, 80);
             this.gb_filtro.TabIndex = 29;
@@ -124,9 +126,9 @@ namespace Interface_ParanaSeguros.Views
             // 
             // btn_Editar
             // 
-            this.btn_Editar.Location = new System.Drawing.Point(746, 12);
+            this.btn_Editar.Location = new System.Drawing.Point(376, 42);
             this.btn_Editar.Name = "btn_Editar";
-            this.btn_Editar.Size = new System.Drawing.Size(119, 57);
+            this.btn_Editar.Size = new System.Drawing.Size(158, 39);
             this.btn_Editar.TabIndex = 30;
             this.btn_Editar.Text = "Editar el cliente seleccionado";
             this.btn_Editar.UseVisualStyleBackColor = true;
@@ -134,9 +136,9 @@ namespace Interface_ParanaSeguros.Views
             // 
             // btn_MostrarTodos
             // 
-            this.btn_MostrarTodos.Location = new System.Drawing.Point(26, 12);
+            this.btn_MostrarTodos.Location = new System.Drawing.Point(12, 27);
             this.btn_MostrarTodos.Name = "btn_MostrarTodos";
-            this.btn_MostrarTodos.Size = new System.Drawing.Size(119, 57);
+            this.btn_MostrarTodos.Size = new System.Drawing.Size(158, 39);
             this.btn_MostrarTodos.TabIndex = 31;
             this.btn_MostrarTodos.Text = "Mostrar todos";
             this.btn_MostrarTodos.UseVisualStyleBackColor = true;
@@ -154,19 +156,40 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Cerrar.UseVisualStyleBackColor = false;
             this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
             // 
-            // FormClientes
+            // btn_InterfaceTelefonos
+            // 
+            this.btn_InterfaceTelefonos.Location = new System.Drawing.Point(376, 132);
+            this.btn_InterfaceTelefonos.Name = "btn_InterfaceTelefonos";
+            this.btn_InterfaceTelefonos.Size = new System.Drawing.Size(158, 39);
+            this.btn_InterfaceTelefonos.TabIndex = 36;
+            this.btn_InterfaceTelefonos.Text = "Actualizar Teléfonos TEC";
+            this.btn_InterfaceTelefonos.UseVisualStyleBackColor = true;
+            this.btn_InterfaceTelefonos.Click += new System.EventHandler(this.btn_InterfaceTelefonos_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(376, 87);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(158, 39);
+            this.button3.TabIndex = 35;
+            this.button3.Text = "Eliminar Seleccionado";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // Clientes_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cerrar;
             this.ClientSize = new System.Drawing.Size(1106, 486);
+            this.Controls.Add(this.btn_InterfaceTelefonos);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btn_Cerrar);
             this.Controls.Add(this.btn_MostrarTodos);
             this.Controls.Add(this.btn_Editar);
             this.Controls.Add(this.gb_filtro);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormClientes";
+            this.Name = "Clientes_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de Clientes";
             this.Load += new System.EventHandler(this.FormClientes_Load);
@@ -190,5 +213,7 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.Button btn_Editar;
         private System.Windows.Forms.Button btn_MostrarTodos;
         private System.Windows.Forms.Button btn_Cerrar;
+        private System.Windows.Forms.Button btn_InterfaceTelefonos;
+        private System.Windows.Forms.Button button3;
     }
 }

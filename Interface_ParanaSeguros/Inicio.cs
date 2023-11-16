@@ -10,6 +10,9 @@ namespace Interface_ParanaSeguros
 {
     public partial class Inicio : Form
     {
+        string[] filenames;
+        string[] filenames_cobranzas;
+
         public Inicio()
         {
             InitializeComponent();
@@ -17,14 +20,32 @@ namespace Interface_ParanaSeguros
 
         private void btnExaminar_Click(object sender, EventArgs e)
         {
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ofd.Multiselect = true;
             ofd.ShowDialog();
-            lblpath.Text = ofd.FileName;
-            if (Path.GetExtension(lblpath.Text).Equals(".xml", StringComparison.OrdinalIgnoreCase))
+            filenames = ofd.FileNames;
+            lblpath.Text = ofd.InitialDirectory;
+
+            bool bandera = false;
+
+            foreach (string fn in filenames)
+            {
+                if (!(Path.GetExtension(fn).Equals(".xml", StringComparison.OrdinalIgnoreCase) && fn.Contains("EMISION")))
+                {
+                    bandera = true;
+                }
+            }
+            if (!bandera)
             {
                 btnProcesar.Enabled = true;
             }
+            else
+            {
+                MessageBox.Show("Error, solo pueden procesarse archivos *xml de EMISION");
+            }
+
         }
 
         private void Inicio_Load(object sender, EventArgs e)
@@ -55,10 +76,24 @@ namespace Interface_ParanaSeguros
                     foreach (var item in result)
                     {
                         Polizas modificar = DB.Polizas.Find(item.Id);
-                        if (modificar.FechaFin > DateTime.Now.Date)
+                        if (modificar.FechaFin < DateTime.Now.Date)
                         {
                             modificar.Estado = "Vencida";
                             DB.SaveChanges();
+                        }
+                        else
+                        {
+                            if (modificar.FechaInicio > DateTime.Now.Date)
+                            {
+                                modificar.Estado = "Emitida";
+                                DB.SaveChanges();
+                            }
+                            else
+                            {
+                                modificar.Estado = "Vigente";
+                                DB.SaveChanges();
+                            }
+
                         }
                     }
                 }
@@ -67,7 +102,7 @@ namespace Interface_ParanaSeguros
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error actualizando estadod e póliza \n" + ex.Message);
+                MessageBox.Show("Error actualizando estado de póliza \n" + ex.Message);
             }
 
         }
@@ -79,64 +114,126 @@ namespace Interface_ParanaSeguros
 
         private void btnProcesar_Click(object sender, EventArgs e)
         {
+
             //logica del procesamiento de archivos xml
             try
             {
-                int cantidadoperaciones = 0;
-                int automotoresymotos = 0;
-                int anulaciones = 0;
-
-                XmlDocument archivo = new XmlDocument();
-                archivo.Load(lblpath.Text);
-
-                foreach (XmlNode elemento in archivo.DocumentElement.ChildNodes[6].ChildNodes)
+                foreach (string file in filenames)
                 {
-                    cantidadoperaciones++;
+                    int cantidadoperaciones = 0;
+                    int automotoresymotos = 0;
+                    int anulaciones = 0;
+                    int autovida = 0;
+                    int incendio = 0;
+                    int ap = 0;
+                    int vivienda = 0;
 
-                    if (elemento.SelectSingleNode("tipo").InnerText == "21")
+                    XmlDocument archivo = new XmlDocument();
+                    archivo.Load(file);
+
+                    foreach (XmlNode elemento in archivo.DocumentElement.ChildNodes[6].ChildNodes)
                     {
-                        AnularPoliza(elemento);
-                        anulaciones++;
-                    }
-                    else
-                    {//PROCESAR EMISIONES Y REFACTURACIONES DE LA RAMA AUTOS Y MOTOS
-                        if (elemento.Name == "operacion" && ((elemento.ChildNodes[0].InnerText == "4") || (elemento.ChildNodes[0].InnerText == "14")))
+                        cantidadoperaciones++;
+
+                        if (elemento.SelectSingleNode("tipo").InnerText == "21")
                         {
-                            automotoresymotos++;
-                            if (elemento.ChildNodes[13].Name == "motivo" && ((elemento.ChildNodes[13].InnerText == "GENERAL") ||
-                                ((elemento.ChildNodes[13].InnerText == "REFACTURACION") || (elemento.ChildNodes[13].InnerText == "SIN ESPECIFICAR"))))
+                            AnularPoliza(elemento);
+                            anulaciones++;
+                        }
+                        else
+                        {   //PROCESAR RAMA AUTOS Y MOTOS
+                            if (elemento.Name == "operacion" && ((elemento.ChildNodes[0].InnerText == "4") || (elemento.ChildNodes[0].InnerText == "14")))
                             {
-                                AgregarRefacturacion(elemento);
+                                automotoresymotos++;
+
+                                if (elemento.SelectSingleNode("tipo").InnerText != "10")
+                                {
+                                    //logica nuevas operaciones autos y motos
+                                    AgregarRefacturacion(elemento);
+                                }
+                                else
+                                {
+                                    //logica procesamiento de endosos modificaciones
+                                }
+
+                                /*
+                                if (elemento.ChildNodes[13].Name == "motivo" && ((elemento.ChildNodes[13].InnerText == "GENERAL") ||
+                                    ((elemento.ChildNodes[13].InnerText == "REFACTURACION") || (elemento.ChildNodes[13].InnerText == "SIN ESPECIFICAR"))))
+                                {
+                                    AgregarRefacturacion(elemento);
+
+                                }
+                                */
+
+                            }
+                            else
+                            {
+                                if (elemento.Name == "operacion" && ((elemento.ChildNodes[0].InnerText == "19")))
+                                {
+                                    autovida++;
+                                }
+                                else
+                                {
+                                    if (elemento.Name == "operacion" && ((elemento.ChildNodes[0].InnerText == "12")))
+                                    {
+                                        ap++;
+                                    }
+                                    else
+                                    {
+                                        if (elemento.Name == "operacion" && ((elemento.ChildNodes[0].InnerText == "24")))
+                                        {
+                                            vivienda++;
+                                        }
+                                        else
+                                        {
+                                            if (elemento.Name == "operacion" && ((elemento.ChildNodes[0].InnerText == "1")))
+                                            {
+                                                incendio++;
+                                            }
+                                            else
+                                            {
+                                                //seguir anudando logicas para embarcaciones, cauciones y resto de las ramas
+                                            }
+                                        }
+
+                                    }
+
+                                }
                             }
 
+                        }
+                        //volver a procesar anulaciones por si hay emisión y anulación el mismo día.
+                        if (elemento.SelectSingleNode("tipo").InnerText == "21")
+                        {
+                            AnularPoliza(elemento);
                         }
 
                     }
 
-
-
-                }
-
-                if (File.Exists(lblpath.Text))
-                {
-                    try
+                    if (File.Exists(file))
                     {
-                        File.Delete(lblpath.Text);  // Borra el archivo
-                        lblpath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString();
-                        btnProcesar.Enabled = false;
+                        try
+                        {
+                            File.Delete(file);  // Borra el archivo
+                            lblpath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString();
+                            btnProcesar.Enabled = false;
+
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show("No se puede borrar el archivo de interface" + "\n \n" + error.Message);
+                        }
 
                     }
-                    catch (Exception error)
-                    {
-                        MessageBox.Show("No se puede borrar el archivo de interface" + "\n \n" + error.Message);
-                    }
+                    int faltan = cantidadoperaciones - (automotoresymotos + anulaciones + autovida + incendio + ap + vivienda);
 
+                    MessageBox.Show("Archivo de interface procesado correctamente \n" + cantidadoperaciones +
+                        " operaciones totales. \n " + automotoresymotos + " agregados a su base de datos (autom y motos) \n" +
+                        anulaciones + " anulaciones \n" + autovida + " polizas auto-vida \n" + faltan + " faltan procesar");
+
+                    gb_Interfaces.Visible = false;
                 }
 
-                MessageBox.Show("Archivo de interface procesado correctamente \n" + cantidadoperaciones +
-                    " operaciones totales. \n " + automotoresymotos + " agregados a su base de datos (autom y motos) \n" +
-                    anulaciones + " anulaciones");
-                gb_Interfaces.Visible = false;
             }
             catch (Exception ex)
             {
@@ -192,27 +289,42 @@ namespace Interface_ParanaSeguros
         {
             try
             {
-                //lógica agregar refacturacion a la base de datos//
-
                 //Clientes
+
+                ActualizarClientes(elemento.SelectSingleNode("tomador"));
+                ActualizarAutos(elemento.SelectSingleNode("bienes"));
+                ActualizarBienes(elemento.SelectSingleNode("bienes"));
+
+                /*
                 foreach (XmlNode item in elemento.ChildNodes)
                 {
                     if (item.Name == "tomador")
                     {
                         ActualizarClientes(item);
                     }
+                    else
+                    {
+                        if (item.Name == "bienes")
+                        {
+                            //Autos y bienes
+                            ActualizarAutos(item);
+                            ActualizarBienes(item);
+                        }
+
+                    }
                 }
+                */
+
+                /*
                 //Autos y bienes
                 foreach (XmlNode item in elemento.ChildNodes)
                 {
-                    if (item.Name == "bienes")
-                    {
-                        ActualizarAutos(item);
-                        ActualizarBienes(item);
-                    }
+                    
                 }
+                */
 
                 //aqui validamos la existencia de la póliza para evitar errores en la base de datos
+
                 using (MartinaPASEntities DB = new MartinaPASEntities())
                 {
                     string policha = elemento.SelectSingleNode("poliza").InnerText;
@@ -237,12 +349,8 @@ namespace Interface_ParanaSeguros
                     }
 
                 }
-
-
                 //se crea el endoso
-
                 ActualizarEndosos(elemento);
-
             }
             catch (Exception ex)
             {
@@ -674,11 +782,28 @@ namespace Interface_ParanaSeguros
 
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ofd.Multiselect = true;
             ofd.ShowDialog();
-            lbl_path_Cobranzas.Text = ofd.FileName;
-            if (Path.GetExtension(lbl_path_Cobranzas.Text).Equals(".xml", StringComparison.OrdinalIgnoreCase))
+            lbl_path_Cobranzas.Text = ofd.InitialDirectory;
+            filenames_cobranzas = ofd.FileNames;
+            btn_Procesar_Cobranzas.Enabled = false;
+
+            bool bandera_cobranzas = false;
+
+            foreach (string fnc in filenames_cobranzas)
+            {
+                if (!(Path.GetExtension(fnc).Equals(".xml", StringComparison.OrdinalIgnoreCase) && fnc.Contains("COBRANZA")))
+                {
+                    bandera_cobranzas = true;
+                }
+            }
+            if (!bandera_cobranzas)
             {
                 btn_Procesar_Cobranzas.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Error, solo pueden procesarse archivos *xml de COBRANZAS");
             }
 
         }
@@ -691,75 +816,79 @@ namespace Interface_ParanaSeguros
             {
                 ProcessTablaRecibos();
 
-                int contador = 0;
-                XmlDocument archivo = new XmlDocument();
-                archivo.Load(lbl_path_Cobranzas.Text);
-
-                var registros = archivo.GetElementsByTagName("cobranza");
-
-
-                List<XmlNode> pagosinterface = new List<XmlNode>();
-                foreach (XmlNode item in registros)
+                foreach (string fnc in filenames_cobranzas)
                 {
-                    if ((item.SelectSingleNode("tipo").InnerText == "ND") && ((item.SelectSingleNode("ramo").InnerText == "4") || (item.SelectSingleNode("ramo").InnerText == "14")))
-                    {
-                        pagosinterface.Add(item);
-                    }
-                }
+                    int contador = 0;
+                    XmlDocument archivo = new XmlDocument();
+                    archivo.Load(fnc);
 
-                using (MartinaPASEntities DB = new MartinaPASEntities())
-                {
-                    var cuotas_query = from t1 in DB.Cuotas
-                                       join t2 in DB.Endosos on t1.idendoso equals t2.id
-                                       join t3 in DB.Polizas on t2.idpoliza equals t3.IdPoliza
-                                       select new
-                                       {
-                                           idcuota = t1.id,
-                                           numero = t1.numero,
-                                           endoso = t2.endoso,
-                                           poliza = t3.NumeroPoliza,
-                                           pagada = t1.pagada
-                                       };
-                    var resultados = cuotas_query.ToList();
+                    var registros = archivo.GetElementsByTagName("cobranza");
 
-                    foreach (var cuota in resultados)
+
+                    List<XmlNode> pagosinterface = new List<XmlNode>();
+                    foreach (XmlNode item in registros)
                     {
-                        if (cuota.pagada != true)
+                        if ((item.SelectSingleNode("tipo").InnerText == "ND") && ((item.SelectSingleNode("ramo").InnerText == "4") || (item.SelectSingleNode("ramo").InnerText == "14")))
                         {
-                            foreach (XmlNode cobranza in pagosinterface)
+                            pagosinterface.Add(item);
+                        }
+                    }
+
+                    using (MartinaPASEntities DB = new MartinaPASEntities())
+                    {
+                        var cuotas_query = from t1 in DB.Cuotas
+                                           join t2 in DB.Endosos on t1.idendoso equals t2.id
+                                           join t3 in DB.Polizas on t2.idpoliza equals t3.IdPoliza
+                                           select new
+                                           {
+                                               idcuota = t1.id,
+                                               numero = t1.numero,
+                                               endoso = t2.endoso,
+                                               poliza = t3.NumeroPoliza,
+                                               pagada = t1.pagada
+                                           };
+                        var resultados = cuotas_query.ToList();
+
+                        foreach (var cuota in resultados)
+                        {
+                            if (cuota.pagada != true)
                             {
-                                if (((cuota.poliza == cobranza.SelectSingleNode("poliza").InnerText)
-                                    && (cuota.endoso == int.Parse(cobranza.SelectSingleNode("endoso").InnerText)))
-                                    && (cuota.numero == int.Parse(cobranza.SelectSingleNode("cuota").InnerText)))
+                                foreach (XmlNode cobranza in pagosinterface)
                                 {
-                                    Cuotas actualizar = DB.Cuotas.Find(cuota.idcuota);
-                                    actualizar.pagada = true;
-                                    DB.SaveChanges();
-                                    contador++;
+                                    if (((cuota.poliza == cobranza.SelectSingleNode("poliza").InnerText)
+                                        && (cuota.endoso == int.Parse(cobranza.SelectSingleNode("endoso").InnerText)))
+                                        && (cuota.numero == int.Parse(cobranza.SelectSingleNode("cuota").InnerText)))
+                                    {
+                                        Cuotas actualizar = DB.Cuotas.Find(cuota.idcuota);
+                                        actualizar.pagada = true;
+                                        DB.SaveChanges();
+                                        contador++;
+                                    }
                                 }
                             }
+
+                        }
+                    }
+
+                    if (File.Exists(fnc))
+                    {
+                        try
+                        {
+                            File.Delete(fnc);  // Borra el archivo
+                            lbl_path_Cobranzas.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString();
+                            btnProcesar.Enabled = false;
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show("No se puede borrar el archivo de interface" + "\n \n" + error.Message);
                         }
 
                     }
+
+                    MessageBox.Show("Cobranza actualizada correctamente, se han agregado " + contador + " registros a su base de datos");
+                    gb_Interfaces.Visible = false;
                 }
 
-                if (File.Exists(lbl_path_Cobranzas.Text))
-                {
-                    try
-                    {
-                        File.Delete(lbl_path_Cobranzas.Text);  // Borra el archivo
-                        lbl_path_Cobranzas.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString();
-                        btnProcesar.Enabled = false;
-                    }
-                    catch (Exception error)
-                    {
-                        MessageBox.Show("No se puede borrar el archivo de interface" + "\n \n" + error.Message);
-                    }
-
-                }
-
-                MessageBox.Show("Cobranza actualizada correctamente, se han agregado " + contador + " registros a su base de datos");
-                gb_Interfaces.Visible = false;
             }
 
             catch (Exception ex)
@@ -795,7 +924,7 @@ namespace Interface_ParanaSeguros
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error procesando tabla Racibos \n \n" + ex.Message);
+                MessageBox.Show("Error procesando tabla Recibos \n" + ex.Message);
             }
         }
 
@@ -844,7 +973,7 @@ namespace Interface_ParanaSeguros
         private void button1_Click(object sender, EventArgs e)
         {
             gb_Vaciar.Visible = true;
-
+            tb_password.Clear();
         }
 
         private void VaciarDB()
@@ -877,14 +1006,9 @@ namespace Interface_ParanaSeguros
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Clientes_Click(object sender, EventArgs e)
         {
-            FormClientes clientes = new FormClientes();
+            Clientes_Form clientes = new Clientes_Form();
             clientes.ShowDialog();
         }
 
@@ -899,6 +1023,42 @@ namespace Interface_ParanaSeguros
             else
             {
                 MessageBox.Show("La contraseña es incorrecta, no intente borrar la base de datos sin autorización.");
+            }
+        }
+
+        private void btn_Polizas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PolizasForm polizas = new PolizasForm();
+                polizas.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btn_Caja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form control = this.MdiChildren.FirstOrDefault(x => x is Caja);
+                if (control != null)
+                {
+                    control.BringToFront();
+                }
+                else
+                {
+                    control = new Caja();
+                    control.MdiParent = this;
+                    control.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

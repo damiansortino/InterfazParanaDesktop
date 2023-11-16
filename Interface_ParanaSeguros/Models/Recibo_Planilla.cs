@@ -18,20 +18,6 @@ namespace Interface_ParanaSeguros.Models
             importe = obj.Cells[5].Value.ToString().Replace(",", ".");
             cuota = obj.Cells[6].Value.ToString();
         }
-        /*
-
-                                    Fecha_de_cobro = a.fechaalta,
-                                    Rama = d.Rama,
-                                    Poliza = d.NumeroPoliza,
-                                    Endoso = c.endoso,
-                                    importe = a.Importe,
-                                    Cuota = h.numero,
-                                    VtoCliente = b.vencimiento,
-                                    VtoConvenio = b.convenio,
-                                    Cliente = f.ApellidoyNombre,
-                                    Auto = g.Nombre,
-                                    Agregar = true
-        */
 
     }
 }

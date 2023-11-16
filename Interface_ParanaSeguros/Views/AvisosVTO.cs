@@ -380,7 +380,7 @@ namespace Interface_ParanaSeguros.Views
                                 join c in DB.Polizas on b.idpoliza equals c.IdPoliza
                                 join d in DB.Bienes on b.idbien equals d.Id
 
-                                where ((a.vencimiento == fechaespecifica) && a.numero == 1)
+                                where (((a.vencimiento == fechaespecifica) && a.numero == 1) && (c.Estado == "vigente" || c.Estado == "Emitida"))
                                 select new
                                 {
                                     IdPoliza = c.IdPoliza,
@@ -415,7 +415,7 @@ namespace Interface_ParanaSeguros.Views
             {
                 text_Mensaje.Text = "Estimado @nombrecliente, " +
                     "Le recordamos que hoy vence la cuota de su seguro correspondiente al vehículo @bienasegurado." +
-                    " Si ya abonó la misma desestime este mensaje. Saludos!.Damián Sortino - Productor Asesor de Seguros.";
+                    " Si ya abonó la misma desestime este mensaje. Saludos!. Damián Sortino - Productor Asesor de Seguros.";
 
                 clientes.Clear();
 
@@ -428,7 +428,7 @@ namespace Interface_ParanaSeguros.Views
                                 join c in DB.Polizas on b.idpoliza equals c.IdPoliza
                                 join d in DB.Bienes on b.idbien equals d.Id
 
-                                where ((a.vencimiento == fechaespecifica))
+                                where ((a.vencimiento == fechaespecifica) && (c.Estado == "Vigente" || c.Estado == "Emitida"))
                                 select new
                                 {
                                     IdPoliza = c.IdPoliza,
@@ -459,65 +459,70 @@ namespace Interface_ParanaSeguros.Views
 
         private void btn_EnviarMsjs_Click(object sender, EventArgs e)
         {
-            string url;
-
-            using (MartinaPASEntities DB = new MartinaPASEntities())
+            try
             {
-                foreach (DataGridViewRow item in dgv.Rows)
+                string url;
+
+                using (MartinaPASEntities DB = new MartinaPASEntities())
                 {
-                    Cliente_VtoDGV cliente = (Cliente_VtoDGV)item.DataBoundItem;
-
-                    if (cliente.Enviar == true)
+                    foreach (DataGridViewRow item in dgv.Rows)
                     {
-                        string mensaje = text_Mensaje.Text;
+                        Cliente_VtoDGV cliente = (Cliente_VtoDGV)item.DataBoundItem;
 
-                        mensaje = mensaje.Replace("@nombrecliente", cliente.Asegurado);
-                        mensaje = mensaje.Replace("@bienasegurado", cliente.BienAsegurado);
-                        if (cliente.Cuota == 1)
+                        if (cliente.Enviar == true)
                         {
-                            string polizacliente = cliente.Poliza;
-                            int endosocliente = cliente.Endoso;
-                            int cuotacliente = cliente.Cuota;
+                            string mensaje = text_Mensaje.Text;
 
-                            string poli = cliente.Poliza.ToString();
+                            mensaje = mensaje.Replace("@nombrecliente", cliente.Asegurado);
+                            mensaje = mensaje.Replace("@bienasegurado", cliente.BienAsegurado);
+                            if (cliente.Cuota == 1)
+                            {
+                                string polizacliente = cliente.Poliza;
+                                int endosocliente = cliente.Endoso;
+                                int cuotacliente = cliente.Cuota;
 
-                            var query = from a in DB.Endosos
-                                        join b in DB.Polizas on a.idpoliza equals b.IdPoliza
-                                        join c in DB.Cuotas on a.id equals c.idendoso
-                                        where (b.NumeroPoliza == polizacliente) && (a.endoso == endosocliente && c.numero == cuotacliente)
-                                        select new
-                                        {
-                                            Id = a.id,
-                                            Sup = a.suplemento,
-                                            Rama = b.Rama
-                                        };
+                                string poli = cliente.Poliza.ToString();
 
-                            var result = query.ToList();
+                                var query = from a in DB.Endosos
+                                            join b in DB.Polizas on a.idpoliza equals b.IdPoliza
+                                            join c in DB.Cuotas on a.id equals c.idendoso
+                                            where (b.NumeroPoliza == polizacliente) && (a.endoso == endosocliente && c.numero == cuotacliente)
+                                            select new
+                                            {
+                                                Id = a.id,
+                                                Sup = a.suplemento,
+                                                Rama = b.Rama
+                                            };
 
-                            string suple = DB.Endosos.Find(result[0].Id).suplemento.ToString();
-                            string rama = result[0].Rama;
+                                var result = query.ToList();
 
+                                string suple = DB.Endosos.Find(result[0].Id).suplemento.ToString();
+                                string rama = result[0].Rama;
 
-                        https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apcertifaut1web?P8375,1,4,6633187,3,1,2
+                                string certificado = $"https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apcertifaut1web?P8375,1," + rama + "," + poli + "," + suple + ",1,2";
+                                string cupon = $"https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apciedia03web?1,0,,0," + rama + "," + poli + "," + suple + ",0,M,S,CMPOLWEBMP_MOVIMIENTOS,FIL,S";
 
-                            string certificado = $"https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apcertifaut1web?P8375,1," + rama + "," + poli + "," + suple + ",1,2";
-                            string cupon = $"https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apciedia03web?1,0,,0," + rama + "," + poli + "," + suple + ",0,M,S,CMPOLWEBMP_MOVIMIENTOS,FIL,S";
+                                mensaje = mensaje.Replace("@enlacecupon", cupon);
+                                mensaje = mensaje.Replace("@enlacetarjeta", certificado);
+                            }
 
-                            mensaje = mensaje.Replace("@enlacecupon", cupon);
-                            mensaje = mensaje.Replace("@enlacetarjeta", certificado);
+                            string cel_cli = DB.Clientes.Find(DB.Polizas.ToList().Find(x => x.NumeroPoliza == cliente.Poliza).IdCliente).Telefono;
+                            url = $"https://wa.me/+549{cel_cli}?text={Uri.EscapeDataString(mensaje)}";
+
+                            System.Diagnostics.Process.Start(url);
                         }
 
-                        string cel_cli = DB.Clientes.Find(DB.Polizas.ToList().Find(x => x.NumeroPoliza == cliente.Poliza).IdCliente).Telefono;
-                        url = $"https://wa.me/+549{cel_cli}?text={Uri.EscapeDataString(mensaje)}";
-
-                        System.Diagnostics.Process.Start(url);
                     }
 
+
+
                 }
-
-
-
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemas enviando mensajes \n" + ex.Message);
+            }
+
         }
 
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -573,7 +578,6 @@ namespace Interface_ParanaSeguros.Views
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -591,5 +595,68 @@ namespace Interface_ParanaSeguros.Views
                 throw;
             }
         }
+
+        private void btn_Destildar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow item in dgv.Rows)
+                {
+                    item.Cells[item.Cells.Count - 1].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en btn destildar \n" + ex.Message);
+            }
+
+        }
+
+        private void btn_Tildar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow item in dgv.Rows)
+                {
+                    item.Cells[item.Cells.Count - 1].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en btn destildar \n" + ex.Message);
+            }
+
+        }
+
+        private void btn_Tildar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow item in dgv.Rows)
+                {
+                    item.Cells[item.Cells.Count - 1].Value = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en btn destildar \n" + ex.Message);
+            }
+        }
+
+        private void btn_Destildar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow item in dgv.Rows)
+                {
+                    item.Cells[item.Cells.Count - 1].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en btn destildar \n" + ex.Message);
+            }
+        }
+
     }
 }

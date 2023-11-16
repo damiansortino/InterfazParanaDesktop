@@ -26,7 +26,7 @@ namespace Interface_ParanaSeguros.Models
                 Polizas poliza = DB.Polizas.Find(endoso.idpoliza);
 
                 this.IdRecibo = rec.IdRecibo;
-                this.FechaCobro = DateTime.Now;
+                this.FechaCobro = (DateTime)rec.FechaCobro;
                 this.Rama = int.Parse(poliza.Rama);
                 this.Poliza = int.Parse(poliza.NumeroPoliza);
                 this.Endoso = endoso.endoso;

@@ -320,6 +320,8 @@ namespace Interface_ParanaSeguros.Views
                 {
                     endosos = endosos.OrderBy(Endosos => Endosos.fechavigenciadesde).ToList();
                     dgvEndosos.DataSource = endosos;
+                    dgvEndosos.Columns["idbien"].Visible = false;
+                    dgvEndosos.Columns["idpoliza"].Visible = false;
                 }
                 else
                 {
@@ -336,6 +338,100 @@ namespace Interface_ParanaSeguros.Views
         private void PolizasForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        
+
+        private void dgvEndosos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                using (MartinaPASEntities DB = new MartinaPASEntities())
+                {
+                    List<CuotasDGV> mostrar = new List<CuotasDGV>();
+                    int endoso_sel = ((EndosoDGV)dgvEndosos.CurrentRow.DataBoundItem).id;
+                    List<Cuotas> cuotas = DB.Cuotas.ToList().FindAll(x => x.idendoso == endoso_sel);
+                    foreach (Cuotas item in cuotas)
+                    {
+                        mostrar.Add(new CuotasDGV(item));
+                    }
+
+                    dgvPagos.DataSource = null;
+                    dgvPagos.DataSource = mostrar;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void dgvPagos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dgvPagos.DataSource != null)
+                {
+                    foreach (Control item in gbox_Botones.Controls)
+                    {
+                        if (item.Enabled == false && item is Button)
+                        {
+                            item.Enabled = true;
+                        }
+                    }
+            }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void btn_Cupones_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string rama = ((PolizaDGV)dgvPolizas.CurrentRow.DataBoundItem).Rama;
+                string poli = ((PolizaDGV)dgvPolizas.CurrentRow.DataBoundItem).NumeroPoliza;
+                string suple = ((EndosoDGV)dgvEndosos.CurrentRow.DataBoundItem).suplemento.ToString();
+                
+                string url = $"https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apciedia03web?1,0,,0," + rama + "," + poli + "," + suple + ",0,M,S,CMPOLWEBMP_MOVIMIENTOS,FIL,S"; ;
+                
+                btn_Cupones.Enabled = false;
+                System.Diagnostics.Process.Start(url);
+
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void btn_Certificado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string rama = ((PolizaDGV)dgvPolizas.CurrentRow.DataBoundItem).Rama;
+                string poli = ((PolizaDGV)dgvPolizas.CurrentRow.DataBoundItem).NumeroPoliza;
+                string suple = ((EndosoDGV)dgvEndosos.CurrentRow.DataBoundItem).suplemento.ToString();
+
+                string url = $"https://productores.paranaseguros.com.ar/PARANA_COMERCIAL_PROD/servlet/ar.com.glmsa.seguros.comercial.apcertifaut1web?P8375,1," + rama + "," + poli + "," + suple + ",1,2";
+                
+                btn_Certificado.Enabled = false;
+                System.Diagnostics.Process.Start(url);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -104,8 +104,8 @@ namespace Interface_ParanaSeguros.Views
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvEndosos);
-            this.splitContainer1.Size = new System.Drawing.Size(1016, 238);
-            this.splitContainer1.SplitterDistance = 591;
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 238);
+            this.splitContainer1.SplitterDistance = 602;
             this.splitContainer1.TabIndex = 2;
             // 
             // dgvPolizas
@@ -117,7 +117,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgvPolizas.MultiSelect = false;
             this.dgvPolizas.Name = "dgvPolizas";
             this.dgvPolizas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPolizas.Size = new System.Drawing.Size(591, 238);
+            this.dgvPolizas.Size = new System.Drawing.Size(602, 238);
             this.dgvPolizas.TabIndex = 4;
             this.dgvPolizas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPolizas_CellClick);
             // 
@@ -131,7 +131,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgvEndosos.Name = "dgvEndosos";
             this.dgvEndosos.ReadOnly = true;
             this.dgvEndosos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEndosos.Size = new System.Drawing.Size(421, 238);
+            this.dgvEndosos.Size = new System.Drawing.Size(418, 238);
             this.dgvEndosos.TabIndex = 5;
             this.dgvEndosos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEndosos_CellClick);
             // 
@@ -144,7 +144,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgvPagos.MultiSelect = false;
             this.dgvPagos.Name = "dgvPagos";
             this.dgvPagos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPagos.Size = new System.Drawing.Size(514, 125);
+            this.dgvPagos.Size = new System.Drawing.Size(518, 125);
             this.dgvPagos.TabIndex = 1;
             this.dgvPagos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPagos_CellClick);
             // 
@@ -231,7 +231,7 @@ namespace Interface_ParanaSeguros.Views
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1016, 367);
+            this.splitContainer2.Size = new System.Drawing.Size(1024, 367);
             this.splitContainer2.SplitterDistance = 238;
             this.splitContainer2.TabIndex = 33;
             // 
@@ -248,8 +248,8 @@ namespace Interface_ParanaSeguros.Views
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.gbox_Botones);
-            this.splitContainer3.Size = new System.Drawing.Size(1016, 125);
-            this.splitContainer3.SplitterDistance = 514;
+            this.splitContainer3.Size = new System.Drawing.Size(1024, 125);
+            this.splitContainer3.SplitterDistance = 518;
             this.splitContainer3.TabIndex = 34;
             // 
             // btn_Cupones
@@ -290,12 +290,15 @@ namespace Interface_ParanaSeguros.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkSalmon;
             this.ClientSize = new System.Drawing.Size(1264, 749);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.gb_filtro);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboxFiltroMostrar);
             this.Name = "PolizasForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PolizasForm";
             this.Load += new System.EventHandler(this.PolizasForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

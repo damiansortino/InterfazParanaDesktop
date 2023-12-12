@@ -45,16 +45,9 @@ namespace Interface_ParanaSeguros
             this.gb_Interfaces = new System.Windows.Forms.GroupBox();
             this.btn_ActualizarRendidos = new System.Windows.Forms.Button();
             this.btn_AvisosVTO = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_Clientes = new System.Windows.Forms.Button();
-            this.tb_password = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btn_okvaciar = new System.Windows.Forms.Button();
-            this.gb_Vaciar = new System.Windows.Forms.GroupBox();
             this.btn_Polizas = new System.Windows.Forms.Button();
-            this.btn_Caja = new System.Windows.Forms.Button();
             this.gb_Interfaces.SuspendLayout();
-            this.gb_Vaciar.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExaminar
@@ -215,16 +208,6 @@ namespace Interface_ParanaSeguros
             this.btn_AvisosVTO.UseVisualStyleBackColor = true;
             this.btn_AvisosVTO.Click += new System.EventHandler(this.btn_AvisosVTO_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(913, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Vaciar DB";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btn_Clientes
             // 
             this.btn_Clientes.Location = new System.Drawing.Point(12, 86);
@@ -234,45 +217,6 @@ namespace Interface_ParanaSeguros
             this.btn_Clientes.Text = "Clientes...";
             this.btn_Clientes.UseVisualStyleBackColor = true;
             this.btn_Clientes.Click += new System.EventHandler(this.btn_Clientes_Click);
-            // 
-            // tb_password
-            // 
-            this.tb_password.Location = new System.Drawing.Point(52, 23);
-            this.tb_password.Name = "tb_password";
-            this.tb_password.Size = new System.Drawing.Size(119, 20);
-            this.tb_password.TabIndex = 17;
-            this.tb_password.UseSystemPasswordChar = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Pass";
-            // 
-            // btn_okvaciar
-            // 
-            this.btn_okvaciar.Location = new System.Drawing.Point(81, 49);
-            this.btn_okvaciar.Name = "btn_okvaciar";
-            this.btn_okvaciar.Size = new System.Drawing.Size(90, 35);
-            this.btn_okvaciar.TabIndex = 10;
-            this.btn_okvaciar.Text = "ok";
-            this.btn_okvaciar.UseVisualStyleBackColor = true;
-            this.btn_okvaciar.Click += new System.EventHandler(this.btn_okvaciar_Click);
-            // 
-            // gb_Vaciar
-            // 
-            this.gb_Vaciar.Controls.Add(this.tb_password);
-            this.gb_Vaciar.Controls.Add(this.btn_okvaciar);
-            this.gb_Vaciar.Controls.Add(this.label3);
-            this.gb_Vaciar.Location = new System.Drawing.Point(791, 74);
-            this.gb_Vaciar.Name = "gb_Vaciar";
-            this.gb_Vaciar.Size = new System.Drawing.Size(196, 90);
-            this.gb_Vaciar.TabIndex = 18;
-            this.gb_Vaciar.TabStop = false;
-            this.gb_Vaciar.Visible = false;
             // 
             // btn_Polizas
             // 
@@ -284,29 +228,14 @@ namespace Interface_ParanaSeguros
             this.btn_Polizas.UseVisualStyleBackColor = true;
             this.btn_Polizas.Click += new System.EventHandler(this.btn_Polizas_Click);
             // 
-            // btn_Caja
-            // 
-            this.btn_Caja.BackgroundImage = global::Interface_ParanaSeguros.Properties.Resources.btn_verde;
-            this.btn_Caja.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Caja.Location = new System.Drawing.Point(352, 86);
-            this.btn_Caja.Name = "btn_Caja";
-            this.btn_Caja.Size = new System.Drawing.Size(164, 32);
-            this.btn_Caja.TabIndex = 20;
-            this.btn_Caja.Text = "Caja";
-            this.btn_Caja.UseVisualStyleBackColor = true;
-            this.btn_Caja.Click += new System.EventHandler(this.btn_Caja_Click);
-            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(1264, 749);
-            this.Controls.Add(this.btn_Caja);
             this.Controls.Add(this.btn_Polizas);
-            this.Controls.Add(this.gb_Vaciar);
             this.Controls.Add(this.btn_Clientes);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_AvisosVTO);
             this.Controls.Add(this.btn_ActualizarRendidos);
             this.Controls.Add(this.gb_Interfaces);
@@ -317,15 +246,13 @@ namespace Interface_ParanaSeguros
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.MaximizeBox = false;
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Interface Parana Seguros";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.gb_Interfaces.ResumeLayout(false);
             this.gb_Interfaces.PerformLayout();
-            this.gb_Vaciar.ResumeLayout(false);
-            this.gb_Vaciar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,14 +274,8 @@ namespace Interface_ParanaSeguros
         private System.Windows.Forms.GroupBox gb_Interfaces;
         private System.Windows.Forms.Button btn_ActualizarRendidos;
         private System.Windows.Forms.Button btn_AvisosVTO;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_Clientes;
-        private System.Windows.Forms.TextBox tb_password;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btn_okvaciar;
-        private System.Windows.Forms.GroupBox gb_Vaciar;
         private System.Windows.Forms.Button btn_Polizas;
-        private System.Windows.Forms.Button btn_Caja;
     }
 }
 

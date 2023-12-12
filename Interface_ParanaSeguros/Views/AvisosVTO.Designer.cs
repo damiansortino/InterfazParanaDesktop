@@ -33,7 +33,6 @@ namespace Interface_ParanaSeguros.Views
             this.dgv = new System.Windows.Forms.DataGridView();
             this.gb = new System.Windows.Forms.GroupBox();
             this.btn_Cerrar = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.dtp_fecha = new System.Windows.Forms.DateTimePicker();
             this.btn_Buscar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,6 +45,8 @@ namespace Interface_ParanaSeguros.Views
             this.btn_ActualizarTelefono = new System.Windows.Forms.Button();
             this.btn_Tildar = new System.Windows.Forms.Button();
             this.btn_Destildar = new System.Windows.Forms.Button();
+            this.lbl_Avisos = new System.Windows.Forms.Label();
+            this.btn_EnviarDirectamente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.gb.SuspendLayout();
             this.SuspendLayout();
@@ -89,33 +90,21 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Cerrar.UseVisualStyleBackColor = false;
             this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
             // 
-            // btnExcel
-            // 
-            this.btnExcel.BackgroundImage = global::Interface_ParanaSeguros.Properties.Resources.excel;
-            this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcel.Location = new System.Drawing.Point(826, 12);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(66, 70);
-            this.btnExcel.TabIndex = 12;
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
             // dtp_fecha
             // 
-            this.dtp_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_fecha.Location = new System.Drawing.Point(28, 59);
             this.dtp_fecha.Name = "dtp_fecha";
-            this.dtp_fecha.Size = new System.Drawing.Size(105, 24);
+            this.dtp_fecha.Size = new System.Drawing.Size(145, 29);
             this.dtp_fecha.TabIndex = 16;
             // 
             // btn_Buscar
             // 
-            this.btn_Buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Buscar.Location = new System.Drawing.Point(150, 57);
+            this.btn_Buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Buscar.Location = new System.Drawing.Point(222, 55);
             this.btn_Buscar.Name = "btn_Buscar";
-            this.btn_Buscar.Size = new System.Drawing.Size(66, 28);
+            this.btn_Buscar.Size = new System.Drawing.Size(89, 40);
             this.btn_Buscar.TabIndex = 17;
             this.btn_Buscar.Text = "Buscar";
             this.btn_Buscar.UseVisualStyleBackColor = true;
@@ -124,29 +113,29 @@ namespace Interface_ParanaSeguros.Views
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(25, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 18);
+            this.label2.Size = new System.Drawing.Size(208, 24);
             this.label2.TabIndex = 18;
             this.label2.Text = "Buscar Refacturaciones";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(290, 22);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 122);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 18);
+            this.label1.Size = new System.Drawing.Size(160, 24);
             this.label1.TabIndex = 21;
             this.label1.Text = "Buscar Vto. Cuota";
             // 
             // btn_BuscarVtoCuota
             // 
-            this.btn_BuscarVtoCuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_BuscarVtoCuota.Location = new System.Drawing.Point(415, 57);
+            this.btn_BuscarVtoCuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BuscarVtoCuota.Location = new System.Drawing.Point(222, 155);
             this.btn_BuscarVtoCuota.Name = "btn_BuscarVtoCuota";
-            this.btn_BuscarVtoCuota.Size = new System.Drawing.Size(65, 28);
+            this.btn_BuscarVtoCuota.Size = new System.Drawing.Size(89, 41);
             this.btn_BuscarVtoCuota.TabIndex = 20;
             this.btn_BuscarVtoCuota.Text = "Buscar";
             this.btn_BuscarVtoCuota.UseVisualStyleBackColor = true;
@@ -154,11 +143,11 @@ namespace Interface_ParanaSeguros.Views
             // 
             // dtp_Vto_Cuota
             // 
-            this.dtp_Vto_Cuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_Vto_Cuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_Vto_Cuota.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_Vto_Cuota.Location = new System.Drawing.Point(292, 59);
+            this.dtp_Vto_Cuota.Location = new System.Drawing.Point(26, 159);
             this.dtp_Vto_Cuota.Name = "dtp_Vto_Cuota";
-            this.dtp_Vto_Cuota.Size = new System.Drawing.Size(105, 24);
+            this.dtp_Vto_Cuota.Size = new System.Drawing.Size(147, 29);
             this.dtp_Vto_Cuota.TabIndex = 19;
             // 
             // text_Mensaje
@@ -227,12 +216,37 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Destildar.UseVisualStyleBackColor = true;
             this.btn_Destildar.Click += new System.EventHandler(this.btn_Destildar_Click_1);
             // 
+            // lbl_Avisos
+            // 
+            this.lbl_Avisos.AutoSize = true;
+            this.lbl_Avisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Avisos.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.lbl_Avisos.Location = new System.Drawing.Point(278, 266);
+            this.lbl_Avisos.Name = "lbl_Avisos";
+            this.lbl_Avisos.Size = new System.Drawing.Size(71, 24);
+            this.lbl_Avisos.TabIndex = 30;
+            this.lbl_Avisos.Text = "Avisos";
+            // 
+            // btn_EnviarDirectamente
+            // 
+            this.btn_EnviarDirectamente.BackColor = System.Drawing.Color.Gold;
+            this.btn_EnviarDirectamente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_EnviarDirectamente.Location = new System.Drawing.Point(317, 155);
+            this.btn_EnviarDirectamente.Name = "btn_EnviarDirectamente";
+            this.btn_EnviarDirectamente.Size = new System.Drawing.Size(200, 41);
+            this.btn_EnviarDirectamente.TabIndex = 31;
+            this.btn_EnviarDirectamente.Text = "Enviar Directamente";
+            this.btn_EnviarDirectamente.UseVisualStyleBackColor = false;
+            this.btn_EnviarDirectamente.Click += new System.EventHandler(this.btn_EnviarDirectamente_Click);
+            // 
             // AvisosVTO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cerrar;
             this.ClientSize = new System.Drawing.Size(1080, 529);
+            this.Controls.Add(this.btn_EnviarDirectamente);
+            this.Controls.Add(this.lbl_Avisos);
             this.Controls.Add(this.btn_Destildar);
             this.Controls.Add(this.btn_Tildar);
             this.Controls.Add(this.btn_ActualizarTelefono);
@@ -245,7 +259,6 @@ namespace Interface_ParanaSeguros.Views
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_Buscar);
             this.Controls.Add(this.dtp_fecha);
-            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.btn_Cerrar);
             this.Controls.Add(this.gb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -266,7 +279,6 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.GroupBox gb;
         private System.Windows.Forms.Button btn_Cerrar;
-        private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.DateTimePicker dtp_fecha;
         private System.Windows.Forms.Button btn_Buscar;
         private System.Windows.Forms.Label label2;
@@ -279,5 +291,7 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.Button btn_ActualizarTelefono;
         private System.Windows.Forms.Button btn_Tildar;
         private System.Windows.Forms.Button btn_Destildar;
+        private System.Windows.Forms.Label lbl_Avisos;
+        private System.Windows.Forms.Button btn_EnviarDirectamente;
     }
 }

@@ -970,41 +970,9 @@ namespace Interface_ParanaSeguros
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            gb_Vaciar.Visible = true;
-            tb_password.Clear();
-        }
-
-        private void VaciarDB()
-        {
-
-            using (MartinaPASEntities DB = new MartinaPASEntities())
-            {
-                // Obtener la tabla específica que deseas limpiar
-                var clientes = DB.Set<Clientes>();
-                var autos = DB.Set<Autos>();
-                var polizas = DB.Set<Polizas>();
-                var endosos = DB.Set<Endosos>();
-                var bienes = DB.Set<Bienes>();
-                var recibos = DB.Set<Recibos>();
-                var cuotas = DB.Set<Cuotas>();
 
 
-                // Eliminar todos los registros de la tabla
-                clientes.RemoveRange(clientes);
-                autos.RemoveRange(autos);
-                polizas.RemoveRange(polizas);
-                recibos.RemoveRange(recibos);
-                cuotas.RemoveRange(cuotas);
-                bienes.RemoveRange(bienes);
-                endosos.RemoveRange(endosos);
 
-
-                // Guardar los cambios en la base de datos
-                DB.SaveChanges();
-            }
-        }
 
         private void btn_Clientes_Click(object sender, EventArgs e)
         {
@@ -1012,19 +980,7 @@ namespace Interface_ParanaSeguros
             clientes.ShowDialog();
         }
 
-        private void btn_okvaciar_Click(object sender, EventArgs e)
-        {
-            if (tb_password.Text == "Damian12")
-            {
-                VaciarDB();
-                MessageBox.Show("Base de datos borrada correctamente");
-                gb_Vaciar.Visible = false;
-            }
-            else
-            {
-                MessageBox.Show("La contraseña es incorrecta, no intente borrar la base de datos sin autorización.");
-            }
-        }
+
 
         private void btn_Polizas_Click(object sender, EventArgs e)
         {
@@ -1037,28 +993,6 @@ namespace Interface_ParanaSeguros
             {
 
                 throw;
-            }
-        }
-
-        private void btn_Caja_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Form control = this.MdiChildren.FirstOrDefault(x => x is Caja);
-                if (control != null)
-                {
-                    control.BringToFront();
-                }
-                else
-                {
-                    control = new Caja();
-                    control.MdiParent = this;
-                    control.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
     }

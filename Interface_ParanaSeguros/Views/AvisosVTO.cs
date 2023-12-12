@@ -1,5 +1,4 @@
 ﻿using Interface_ParanaSeguros.Models;
-using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,57 +13,9 @@ namespace Interface_ParanaSeguros.Views
         List<Cliente_VtoDGV> clientes = new List<Cliente_VtoDGV>();
         SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-
         public AvisosVTO()
         {
             InitializeComponent();
-        }
-
-        private void btn_VtoHoy_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                text_Mensaje.Text = "Estimado @nombrecliente, " +
-                    "Le recordamos que hoy vence la cuota de su seguro correspondiente al vehículo @bienasegurado." +
-                    " Si ya abonó la misma desestime este mensaje. Saludos!.Damián Sortino - Productor Asesor de Seguros.";
-                clientes.Clear();
-
-                using (MartinaPASEntities DB = new MartinaPASEntities())
-                {
-                    DateTime FechaActual = DateTime.Now.Date;
-
-                    var query = from a in DB.Cuotas
-                                join b in DB.Endosos on a.idendoso equals b.id
-                                join c in DB.Polizas on b.idpoliza equals c.IdPoliza
-                                join d in DB.Bienes on b.idbien equals d.Id
-
-                                where ((a.vencimiento == FechaActual) && (a.numero != 1))
-                                select new
-                                {
-                                    IdPoliza = c.IdPoliza,
-                                    IdBien = d.Id,
-                                    IdCuota = a.id,
-                                    IdEndoso = b.id
-                                };
-                    var result = query.ToList();
-
-
-                    foreach (var item in result)
-                    {
-                        Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
-                        clientes.Add(nuevo);
-                    }
-
-                    dgv.DataSource = null;
-                    dgv.DataSource = clientes;
-                    dgv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Error en btn Vtos Hoy \n" + ex.Message);
-            }
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
@@ -72,291 +23,11 @@ namespace Interface_ParanaSeguros.Views
             this.Close();
         }
 
-        private void btn_Vto7dias_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                text_Mensaje.Text = "Estimado @nombrecliente, Le recordamos que faltan 7 días " +
-                    "para el vencimiento de la cuota de su seguro correspondiente al vehículo " +
-                    "@bienasegurado. Si ya abonó la misma desestime este mensaje. Saludos!. Damián Sortino - Productor Asesor de Seguros";
-
-                clientes.Clear();
-
-                using (MartinaPASEntities DB = new MartinaPASEntities())
-                {
-
-                    DateTime fechamas7 = DateTime.Now.Date.AddDays(7);
-
-                    var query = from a in DB.Cuotas
-                                join b in DB.Endosos on a.idendoso equals b.id
-                                join c in DB.Polizas on b.idpoliza equals c.IdPoliza
-                                join d in DB.Bienes on b.idbien equals d.Id
-
-                                where ((a.vencimiento == fechamas7) && a.numero != 1)
-                                select new
-                                {
-                                    IdPoliza = c.IdPoliza,
-                                    IdBien = d.Id,
-                                    IdCuota = a.id,
-                                    IdEndoso = b.id
-                                };
-                    var result = query.ToList();
-
-
-                    foreach (var item in result)
-                    {
-                        Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
-                        clientes.Add(nuevo);
-                    }
-
-                    dgv.DataSource = null;
-                    dgv.DataSource = clientes;
-                    dgv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Error en btn Vtos 7 \n" + ex.Message);
-            }
-        }
-
-        private void btn_7diasvencido_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                text_Mensaje.Text = "Estimado @nombrecliente, la cuota de su seguro correspondiente " +
-                    "al vehículo @bienasegurado, ha vencido hace ya 7 días. Si ya abonó la misma, desestime este mensaje. Saludos!. Damián Sortino - Productor Asesor de Seguros";
-                clientes.Clear();
-
-                using (MartinaPASEntities DB = new MartinaPASEntities())
-                {
-                    DateTime fechamenos7 = DateTime.Now.Date.AddDays(-7);
-
-                    var query = from a in DB.Cuotas
-                                join b in DB.Endosos on a.idendoso equals b.id
-                                join c in DB.Polizas on b.idpoliza equals c.IdPoliza
-                                join d in DB.Bienes on b.idbien equals d.Id
-
-                                where (a.vencimiento == fechamenos7)
-                                select new
-                                {
-                                    IdPoliza = c.IdPoliza,
-                                    IdBien = d.Id,
-                                    IdCuota = a.id,
-                                    IdEndoso = b.id
-                                };
-                    var result = query.ToList();
-
-
-                    foreach (var item in result)
-                    {
-                        Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
-                        clientes.Add(nuevo);
-                    }
-
-                    dgv.DataSource = null;
-                    dgv.DataSource = clientes;
-                    dgv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-
-                MessageBox.Show("Error en btn Vtos 7 \n" + ex.Message);
-            }
-
-        }
-
-
-        //laburar aqui
-        private void btnExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                saveFileDialog1.Filter = "Archivos XLS (*.xls)|*.xlsx";
-                saveFileDialog1.Title = "Guardar archivo xls";
-
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    ExportarListaAExcel(clientes, saveFileDialog1.FileName);
-                    MessageBox.Show("Exportado exitosamente");
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al exportar xls \n" + ex.Message);
-            }
-        }
-
-        public void ExportarListaAExcel(List<Cliente_VtoDGV> lista, string nombreArchivo)
-        {
-            try
-            {
-                SLDocument documento = new SLDocument();
-
-                // Definir los encabezados de columna
-                documento.SetCellValue(1, 1, "Poliza");
-                documento.SetCellValue(1, 2, "Vigencia Desde");
-                documento.SetCellValue(1, 3, "Vigencia Hasta");
-                documento.SetCellValue(1, 4, "Asegurado");
-                documento.SetCellValue(1, 5, "Vencimiento");
-                documento.SetCellValue(1, 6, "Endoso");
-                documento.SetCellValue(1, 7, "Cuota");
-                documento.SetCellValue(1, 8, "Bien Asegurado");
-                documento.SetCellValue(1, 9, "Link WhatsApp");
-
-                // Escribir los datos de la lista
-                for (int i = 0; i < lista.Count; i++)
-                {
-                    string url;
-
-                    Cliente_VtoDGV cliente = lista[i];
-
-                    using (MartinaPASEntities DB = new MartinaPASEntities())
-                    {
-                        string mensaje = "Hola!";
-                        string cel_cli = DB.Clientes.Find(DB.Polizas.ToList().Find(x => x.NumeroPoliza == cliente.Poliza).IdCliente).Telefono;
-                        url = $"https://wa.me/{cel_cli}?text={Uri.EscapeDataString(mensaje)}";
-
-                    }
-
-                    int fila = i + 2;
-
-                    documento.SetCellValue(fila, 1, cliente.Poliza);
-                    documento.SetCellValue(fila, 2, cliente.VigenciaDesde.ToShortDateString());
-                    documento.SetCellValue(fila, 3, cliente.VigenciaHasta.ToShortDateString());
-                    documento.SetCellValue(fila, 4, cliente.Asegurado);
-                    documento.SetCellValue(fila, 5, cliente.Vencimiento.ToShortDateString());
-                    documento.SetCellValue(fila, 6, cliente.Endoso);
-                    documento.SetCellValue(fila, 7, cliente.Cuota);
-                    documento.SetCellValue(fila, 8, cliente.BienAsegurado);
-                    documento.SetCellValue(fila, 9, url);
-
-                    // Ajustar ancho de las celdas al contenido
-                    documento.AutoFitColumn(fila, 1, 9);
-                }
-
-                // Guardar el archivo Excel
-                documento.SaveAs(nombreArchivo);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error método ExportarListaExcel() \n" + ex.Message);
-            }
-
-        }
-
         private void AvisosVTO_Load(object sender, EventArgs e)
         {
             dtp_fecha.Value = DateTime.Now.Date;
             dtp_Vto_Cuota.Value = DateTime.Now.Date;
             btn_ActualizarTelefono.Enabled = false;
-        }
-
-        private void btn_Refacturaciones_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                text_Mensaje.Text = "Estimado @nombrecliente, se encuentra disponible su refacturación de póliza correspondiente" +
-                    " al vehículo @bienasegurado, puede descargar su cupón de pago utilizando el siguiente enlace: @enlacecupon o" +
-                    " puede retirar la versión impresa en mi oficina de Av. Tucumán 339 - San Martín - Mendoza." +
-                    " A continuación, " +
-                    "un enlace de descarga de su constancia de cobertura actualizada: @enlacetarjeta. Saludos! - Damián Sortino - Productor Asesor de Seguros";
-
-
-                clientes.Clear();
-
-                using (MartinaPASEntities DB = new MartinaPASEntities())
-                {
-                    DateTime FechaActual = DateTime.Now.Date;
-
-                    var query = from a in DB.Cuotas
-                                join b in DB.Endosos on a.idendoso equals b.id
-                                join c in DB.Polizas on b.idpoliza equals c.IdPoliza
-                                join d in DB.Bienes on b.idbien equals d.Id
-
-                                where ((a.vencimiento == FechaActual) && (a.numero == 1))
-                                select new
-                                {
-                                    IdPoliza = c.IdPoliza,
-                                    IdBien = d.Id,
-                                    IdCuota = a.id,
-                                    IdEndoso = b.id
-                                };
-                    var result = query.ToList();
-
-
-                    foreach (var item in result)
-                    {
-                        Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
-                        clientes.Add(nuevo);
-                    }
-
-                    dgv.DataSource = null;
-                    dgv.DataSource = clientes;
-                    dgv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Error en btn Refacturaciones \n" + ex.Message);
-            }
-        }
-
-        private void btn_Refactu_10dias_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                text_Mensaje.Text = "Estimado @nombrecliente, se encuentra disponible su refacturación de póliza correspondiente" +
-                    " al vehículo @bienasegurado, puede descargar su cupón de pago utilizando el siguiente enlace: @enlacecupon o" +
-                    " puede retirar la versión impresa en mi oficina de Av. Tucumán 339 - San Martín - Mendoza." +
-                    " A continuación, " +
-                    "un enlace de descarga de su constancia de cobertura actualizada: @enlacetarjeta. Saludos! - Damián Sortino - Productor Asesor de Seguros";
-
-
-                clientes.Clear();
-
-                using (MartinaPASEntities DB = new MartinaPASEntities())
-                {
-                    DateTime fechamas10 = DateTime.Now.Date.AddDays(10);
-
-                    var query = from a in DB.Cuotas
-                                join b in DB.Endosos on a.idendoso equals b.id
-                                join c in DB.Polizas on b.idpoliza equals c.IdPoliza
-                                join d in DB.Bienes on b.idbien equals d.Id
-
-                                where ((a.vencimiento == fechamas10) && a.numero == 1)
-                                select new
-                                {
-                                    IdPoliza = c.IdPoliza,
-                                    IdBien = d.Id,
-                                    IdCuota = a.id,
-                                    IdEndoso = b.id
-                                };
-                    var result = query.ToList();
-
-
-                    foreach (var item in result)
-                    {
-                        Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
-                        clientes.Add(nuevo);
-                    }
-
-                    dgv.DataSource = null;
-                    dgv.DataSource = clientes;
-                    dgv.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Error en btn Refactu 10 \n" + ex.Message);
-            }
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
@@ -413,9 +84,9 @@ namespace Interface_ParanaSeguros.Views
         {
             try
             {
-                text_Mensaje.Text = "Estimado @nombrecliente, " +
-                    "Le recordamos que hoy vence la cuota de su seguro correspondiente al vehículo @bienasegurado." +
-                    " Si ya abonó la misma desestime este mensaje. Saludos!. Damián Sortino - Productor Asesor de Seguros.";
+                text_Mensaje.Text = "Hola @nombrecliente!, " +
+                    "te recuerdo que hoy vence la cuota de tu seguro correspondiente al vehículo @bienasegurado." +
+                    " Si ya pagaste, no hagas caso de este mensaje. Saludos!. Damián Sortino - Productor Asesor de Seguros.";
 
                 clientes.Clear();
 
@@ -441,10 +112,16 @@ namespace Interface_ParanaSeguros.Views
 
                     foreach (var item in result)
                     {
-                        Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
-                        clientes.Add(nuevo);
+                        Cuotas evaluarpagada = DB.Cuotas.Find(item.IdCuota);
+
+                        if (evaluarpagada.pagada == false)
+                        {
+                            Cliente_VtoDGV nuevo = new Cliente_VtoDGV(item.IdPoliza, item.IdBien, item.IdCuota, item.IdEndoso);
+                            clientes.Add(nuevo);
+                        }
                     }
 
+                    lbl_Avisos.Text = clientes.Count + " avisos listos para enviar.";
                     dgv.DataSource = null;
                     dgv.DataSource = clientes;
                     dgv.Visible = true;
@@ -596,38 +273,6 @@ namespace Interface_ParanaSeguros.Views
             }
         }
 
-        private void btn_Destildar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow item in dgv.Rows)
-                {
-                    item.Cells[item.Cells.Count - 1].Value = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en btn destildar \n" + ex.Message);
-            }
-
-        }
-
-        private void btn_Tildar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow item in dgv.Rows)
-                {
-                    item.Cells[item.Cells.Count - 1].Value = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error en btn destildar \n" + ex.Message);
-            }
-
-        }
-
         private void btn_Tildar_Click_1(object sender, EventArgs e)
         {
             try
@@ -658,5 +303,17 @@ namespace Interface_ParanaSeguros.Views
             }
         }
 
+        private void btn_EnviarDirectamente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btn_BuscarVtoCuota.PerformClick();
+                btn_EnviarMsjs.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

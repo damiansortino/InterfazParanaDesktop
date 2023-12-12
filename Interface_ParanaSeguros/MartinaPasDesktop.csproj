@@ -203,12 +203,6 @@
     <Compile Include="Views\AvisosVTO.Designer.cs">
       <DependentUpon>AvisosVTO.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Caja.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Caja.Designer.cs">
-      <DependentUpon>Caja.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\EditCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,9 +275,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AvisosVTO.resx">
       <DependentUpon>AvisosVTO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Caja.resx">
-      <DependentUpon>Caja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EditCliente.resx">
       <DependentUpon>EditCliente.cs</DependentUpon>

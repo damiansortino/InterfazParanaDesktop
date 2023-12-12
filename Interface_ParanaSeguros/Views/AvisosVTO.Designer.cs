@@ -59,7 +59,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgv.Location = new System.Drawing.Point(3, 16);
             this.dgv.Name = "dgv";
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1074, 213);
+            this.dgv.Size = new System.Drawing.Size(1258, 410);
             this.dgv.TabIndex = 0;
             this.dgv.Visible = false;
             this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
@@ -70,9 +70,9 @@ namespace Interface_ParanaSeguros.Views
             // 
             this.gb.Controls.Add(this.dgv);
             this.gb.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gb.Location = new System.Drawing.Point(0, 297);
+            this.gb.Location = new System.Drawing.Point(0, 320);
             this.gb.Name = "gb";
-            this.gb.Size = new System.Drawing.Size(1080, 232);
+            this.gb.Size = new System.Drawing.Size(1264, 429);
             this.gb.TabIndex = 1;
             this.gb.TabStop = false;
             this.gb.Text = "Listado";
@@ -244,7 +244,7 @@ namespace Interface_ParanaSeguros.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cerrar;
-            this.ClientSize = new System.Drawing.Size(1080, 529);
+            this.ClientSize = new System.Drawing.Size(1264, 749);
             this.Controls.Add(this.btn_EnviarDirectamente);
             this.Controls.Add(this.lbl_Avisos);
             this.Controls.Add(this.btn_Destildar);

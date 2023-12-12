@@ -36,16 +36,16 @@ namespace Interface_ParanaSeguros.Views
             this.dgvEndosos = new System.Windows.Forms.DataGridView();
             this.dgvPagos = new System.Windows.Forms.DataGridView();
             this.gb_filtro = new System.Windows.Forms.GroupBox();
-            this.btn_filtrar = new System.Windows.Forms.Button();
-            this.radio_DNI = new System.Windows.Forms.RadioButton();
-            this.tb_filtro = new System.Windows.Forms.TextBox();
-            this.radio_ApellidoNombre = new System.Windows.Forms.RadioButton();
             this.radioPatente = new System.Windows.Forms.RadioButton();
+            this.radio_ApellidoNombre = new System.Windows.Forms.RadioButton();
+            this.tb_filtro = new System.Windows.Forms.TextBox();
+            this.radio_DNI = new System.Windows.Forms.RadioButton();
+            this.btn_filtrar = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.btn_Cupones = new System.Windows.Forms.Button();
-            this.btn_Certificado = new System.Windows.Forms.Button();
             this.gbox_Botones = new System.Windows.Forms.GroupBox();
+            this.btn_Certificado = new System.Windows.Forms.Button();
+            this.btn_Cupones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -70,16 +70,16 @@ namespace Interface_ParanaSeguros.Views
             this.cboxFiltroMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFiltroMostrar.FormattingEnabled = true;
             this.cboxFiltroMostrar.Items.AddRange(new object[] {
-            "Todas",
-            "Emitidas",
             "Vigentes",
+            "Emitidas",
             "Vencidas",
-            "Anuladas"});
+            "Anuladas",
+            "Todas"});
             this.cboxFiltroMostrar.Location = new System.Drawing.Point(677, 30);
             this.cboxFiltroMostrar.Name = "cboxFiltroMostrar";
             this.cboxFiltroMostrar.Size = new System.Drawing.Size(207, 28);
             this.cboxFiltroMostrar.TabIndex = 31;
-            this.cboxFiltroMostrar.Text = "Todas";
+            this.cboxFiltroMostrar.Text = "Vigentes";
             // 
             // label1
             // 
@@ -104,8 +104,8 @@ namespace Interface_ParanaSeguros.Views
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvEndosos);
-            this.splitContainer1.Size = new System.Drawing.Size(1024, 238);
-            this.splitContainer1.SplitterDistance = 602;
+            this.splitContainer1.Size = new System.Drawing.Size(1240, 316);
+            this.splitContainer1.SplitterDistance = 742;
             this.splitContainer1.TabIndex = 2;
             // 
             // dgvPolizas
@@ -117,7 +117,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgvPolizas.MultiSelect = false;
             this.dgvPolizas.Name = "dgvPolizas";
             this.dgvPolizas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPolizas.Size = new System.Drawing.Size(602, 238);
+            this.dgvPolizas.Size = new System.Drawing.Size(742, 316);
             this.dgvPolizas.TabIndex = 4;
             this.dgvPolizas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPolizas_CellClick);
             // 
@@ -131,7 +131,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgvEndosos.Name = "dgvEndosos";
             this.dgvEndosos.ReadOnly = true;
             this.dgvEndosos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEndosos.Size = new System.Drawing.Size(418, 238);
+            this.dgvEndosos.Size = new System.Drawing.Size(494, 316);
             this.dgvEndosos.TabIndex = 5;
             this.dgvEndosos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEndosos_CellClick);
             // 
@@ -144,7 +144,7 @@ namespace Interface_ParanaSeguros.Views
             this.dgvPagos.MultiSelect = false;
             this.dgvPagos.Name = "dgvPagos";
             this.dgvPagos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPagos.Size = new System.Drawing.Size(518, 125);
+            this.dgvPagos.Size = new System.Drawing.Size(688, 127);
             this.dgvPagos.TabIndex = 1;
             this.dgvPagos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPagos_CellClick);
             // 
@@ -161,38 +161,16 @@ namespace Interface_ParanaSeguros.Views
             this.gb_filtro.TabIndex = 30;
             this.gb_filtro.TabStop = false;
             // 
-            // btn_filtrar
+            // radioPatente
             // 
-            this.btn_filtrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_filtrar.Location = new System.Drawing.Point(407, 42);
-            this.btn_filtrar.Name = "btn_filtrar";
-            this.btn_filtrar.Size = new System.Drawing.Size(96, 32);
-            this.btn_filtrar.TabIndex = 17;
-            this.btn_filtrar.Text = "Filtrar";
-            this.btn_filtrar.UseVisualStyleBackColor = true;
-            this.btn_filtrar.Click += new System.EventHandler(this.btn_filtrar_Click);
-            // 
-            // radio_DNI
-            // 
-            this.radio_DNI.AutoSize = true;
-            this.radio_DNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radio_DNI.Location = new System.Drawing.Point(202, 12);
-            this.radio_DNI.Name = "radio_DNI";
-            this.radio_DNI.Size = new System.Drawing.Size(55, 24);
-            this.radio_DNI.TabIndex = 15;
-            this.radio_DNI.Text = "DNI";
-            this.radio_DNI.UseVisualStyleBackColor = true;
-            // 
-            // tb_filtro
-            // 
-            this.tb_filtro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_filtro.Location = new System.Drawing.Point(28, 48);
-            this.tb_filtro.Name = "tb_filtro";
-            this.tb_filtro.Size = new System.Drawing.Size(262, 26);
-            this.tb_filtro.TabIndex = 13;
-            this.tb_filtro.Text = "Buscar...";
-            this.tb_filtro.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_filtro_MouseClick);
-            this.tb_filtro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_filtro_KeyPress);
+            this.radioPatente.AutoSize = true;
+            this.radioPatente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioPatente.Location = new System.Drawing.Point(318, 12);
+            this.radioPatente.Name = "radioPatente";
+            this.radioPatente.Size = new System.Drawing.Size(83, 24);
+            this.radioPatente.TabIndex = 18;
+            this.radioPatente.Text = "Patente";
+            this.radioPatente.UseVisualStyleBackColor = true;
             // 
             // radio_ApellidoNombre
             // 
@@ -207,16 +185,38 @@ namespace Interface_ParanaSeguros.Views
             this.radio_ApellidoNombre.Text = "Apellido y Nombre";
             this.radio_ApellidoNombre.UseVisualStyleBackColor = true;
             // 
-            // radioPatente
+            // tb_filtro
             // 
-            this.radioPatente.AutoSize = true;
-            this.radioPatente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioPatente.Location = new System.Drawing.Point(318, 12);
-            this.radioPatente.Name = "radioPatente";
-            this.radioPatente.Size = new System.Drawing.Size(83, 24);
-            this.radioPatente.TabIndex = 18;
-            this.radioPatente.Text = "Patente";
-            this.radioPatente.UseVisualStyleBackColor = true;
+            this.tb_filtro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_filtro.Location = new System.Drawing.Point(28, 48);
+            this.tb_filtro.Name = "tb_filtro";
+            this.tb_filtro.Size = new System.Drawing.Size(262, 26);
+            this.tb_filtro.TabIndex = 13;
+            this.tb_filtro.Text = "Buscar...";
+            this.tb_filtro.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_filtro_MouseClick);
+            this.tb_filtro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_filtro_KeyPress);
+            // 
+            // radio_DNI
+            // 
+            this.radio_DNI.AutoSize = true;
+            this.radio_DNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radio_DNI.Location = new System.Drawing.Point(202, 12);
+            this.radio_DNI.Name = "radio_DNI";
+            this.radio_DNI.Size = new System.Drawing.Size(55, 24);
+            this.radio_DNI.TabIndex = 15;
+            this.radio_DNI.Text = "DNI";
+            this.radio_DNI.UseVisualStyleBackColor = true;
+            // 
+            // btn_filtrar
+            // 
+            this.btn_filtrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_filtrar.Location = new System.Drawing.Point(407, 42);
+            this.btn_filtrar.Name = "btn_filtrar";
+            this.btn_filtrar.Size = new System.Drawing.Size(96, 32);
+            this.btn_filtrar.TabIndex = 17;
+            this.btn_filtrar.Text = "Filtrar";
+            this.btn_filtrar.UseVisualStyleBackColor = true;
+            this.btn_filtrar.Click += new System.EventHandler(this.btn_filtrar_Click);
             // 
             // splitContainer2
             // 
@@ -231,8 +231,8 @@ namespace Interface_ParanaSeguros.Views
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1024, 367);
-            this.splitContainer2.SplitterDistance = 238;
+            this.splitContainer2.Size = new System.Drawing.Size(1240, 447);
+            this.splitContainer2.SplitterDistance = 316;
             this.splitContainer2.TabIndex = 33;
             // 
             // splitContainer3
@@ -248,21 +248,19 @@ namespace Interface_ParanaSeguros.Views
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.gbox_Botones);
-            this.splitContainer3.Size = new System.Drawing.Size(1024, 125);
-            this.splitContainer3.SplitterDistance = 518;
+            this.splitContainer3.Size = new System.Drawing.Size(1240, 127);
+            this.splitContainer3.SplitterDistance = 688;
             this.splitContainer3.TabIndex = 34;
             // 
-            // btn_Cupones
+            // gbox_Botones
             // 
-            this.btn_Cupones.Enabled = false;
-            this.btn_Cupones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Cupones.Location = new System.Drawing.Point(6, 19);
-            this.btn_Cupones.Name = "btn_Cupones";
-            this.btn_Cupones.Size = new System.Drawing.Size(96, 32);
-            this.btn_Cupones.TabIndex = 18;
-            this.btn_Cupones.Text = "Cupones";
-            this.btn_Cupones.UseVisualStyleBackColor = true;
-            this.btn_Cupones.Click += new System.EventHandler(this.btn_Cupones_Click);
+            this.gbox_Botones.Controls.Add(this.btn_Certificado);
+            this.gbox_Botones.Controls.Add(this.btn_Cupones);
+            this.gbox_Botones.Location = new System.Drawing.Point(3, 3);
+            this.gbox_Botones.Name = "gbox_Botones";
+            this.gbox_Botones.Size = new System.Drawing.Size(690, 124);
+            this.gbox_Botones.TabIndex = 34;
+            this.gbox_Botones.TabStop = false;
             // 
             // btn_Certificado
             // 
@@ -276,22 +274,24 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Certificado.UseVisualStyleBackColor = true;
             this.btn_Certificado.Click += new System.EventHandler(this.btn_Certificado_Click);
             // 
-            // gbox_Botones
+            // btn_Cupones
             // 
-            this.gbox_Botones.Controls.Add(this.btn_Certificado);
-            this.gbox_Botones.Controls.Add(this.btn_Cupones);
-            this.gbox_Botones.Location = new System.Drawing.Point(3, 3);
-            this.gbox_Botones.Name = "gbox_Botones";
-            this.gbox_Botones.Size = new System.Drawing.Size(492, 119);
-            this.gbox_Botones.TabIndex = 34;
-            this.gbox_Botones.TabStop = false;
+            this.btn_Cupones.Enabled = false;
+            this.btn_Cupones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cupones.Location = new System.Drawing.Point(6, 19);
+            this.btn_Cupones.Name = "btn_Cupones";
+            this.btn_Cupones.Size = new System.Drawing.Size(96, 32);
+            this.btn_Cupones.TabIndex = 18;
+            this.btn_Cupones.Text = "Cupones";
+            this.btn_Cupones.UseVisualStyleBackColor = true;
+            this.btn_Cupones.Click += new System.EventHandler(this.btn_Cupones_Click);
             // 
             // PolizasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSalmon;
-            this.ClientSize = new System.Drawing.Size(1264, 749);
+            this.ClientSize = new System.Drawing.Size(1264, 613);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.gb_filtro);
             this.Controls.Add(this.label1);

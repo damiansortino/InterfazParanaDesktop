@@ -115,14 +115,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Interface_ParanaSeguros.exe" size="441824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Interface_ParanaSeguros.exe" size="441312">
       <assemblyIdentity name="Interface_ParanaSeguros" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>65/F+u8JhbQYjzAGDP9EhsAC0/D4x96Zco/NFdVTA/E=</dsig:DigestValue>
+        <dsig:DigestValue>M8pslYnioHGEcazj9D2FRZ2+FACp54oZIcFSs/9VqGo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

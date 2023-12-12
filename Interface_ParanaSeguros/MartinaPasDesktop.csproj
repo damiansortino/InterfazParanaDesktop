@@ -245,12 +245,6 @@
     <Compile Include="Views\PolizasForm.Designer.cs">
       <DependentUpon>PolizasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\PolizasView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\PolizasView.Designer.cs">
-      <DependentUpon>PolizasView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\RecibosCobrados.cs">
       <SubType>Form</SubType>
     </Compile>

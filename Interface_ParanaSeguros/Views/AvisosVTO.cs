@@ -34,11 +34,10 @@ namespace Interface_ParanaSeguros.Views
         {
             try
             {
-                text_Mensaje.Text = "Estimado @nombrecliente, se encuentra disponible su refacturación de póliza correspondiente" +
-                    " al vehículo @bienasegurado, puede descargar su cupón de pago utilizando el siguiente enlace: @enlacecupon o" +
-                    " puede retirar la versión impresa en mi oficina de Av. Tucumán 339 - San Martín - Mendoza." +
-                    " A continuación, " +
-                    "un enlace de descarga de su constancia de cobertura actualizada: @enlacetarjeta. Saludos! - Damián Sortino - Productor Asesor de Seguros";
+                text_Mensaje.Text = "Hola @nombrecliente!, ya podés descargar tu refacturación de póliza que corresponde" +
+                    " al vehículo @bienasegurado, para bajar el cupón de pago hacé click aquí ==> @enlacecupon o" +
+                    " buscá en mi oficina la versión en papel." + " Podés descargar una constancia de cobertura haciendo click aquí ==> " +
+                    "@enlacetarjeta. Saludos! - Damián Sortino - Productor Asesor de Seguros";
 
                 clientes.Clear();
 
@@ -68,6 +67,7 @@ namespace Interface_ParanaSeguros.Views
                         clientes.Add(nuevo);
                     }
 
+                    lbl_Avisos.Text = clientes.Count + " Avisos listos para enviar";
                     dgv.DataSource = null;
                     dgv.DataSource = clientes;
                     dgv.Visible = true;

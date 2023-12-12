@@ -28,7 +28,7 @@ namespace Interface_ParanaSeguros.Models
                 IdCliente = poli.IdCliente;
                 Asegurado = DB.Clientes.Find(poli.IdCliente).ApellidoyNombre;
 
-                if (poli.Rama == "4")
+                if (poli.Rama == "4" || poli.Rama == "14")
                 {
                     this.InfoAdicional = DB.Bienes.Find((DB.Endosos.ToList().FindAll(x => x.idpoliza == poli.IdPoliza).FirstOrDefault().idbien)).Nombre;
                 }

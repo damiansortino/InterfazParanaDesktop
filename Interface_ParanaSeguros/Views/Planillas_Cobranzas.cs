@@ -848,5 +848,109 @@ namespace Interface_ParanaSeguros.Views
         {
             this.Close();
         }
+
+        private void tb_importe_filtro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // Permite solo un punto decimal
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains('.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tb_importe_filtro_MouseClick(object sender, MouseEventArgs e)
+        {
+            btn_ok_importe_filtro.Text = "0";
+        }
+
+        private void btn_ok_importe_filtro_Click(object sender, EventArgs e)
+        {
+            mostrar.Clear();
+            try
+            {
+                using (MartinaPASEntities DB = new MartinaPASEntities())
+                {
+                    DateTime proximoconvenio;
+
+                    DateTime fechaActual = DateTime.Now;
+                    int dia = fechaActual.Day;
+
+                    if (dia <= 3)
+                    {
+                        proximoconvenio = new DateTime(fechaActual.Year, fechaActual.Month, 3);
+                    }
+                    else if (dia > 3 && dia <= 18)
+                    {
+                        proximoconvenio = new DateTime(fechaActual.Year, fechaActual.Month, 18);
+                    }
+                    else
+                    {
+                        proximoconvenio = new DateTime(fechaActual.Year, fechaActual.AddMonths(1).Month, 3);
+                    }
+
+                    decimal importemenor = decimal.Parse(tb_importe_filtro.Text);
+                    if (importemenor >= 1)
+                    {
+                        var query = from a in DB.Recibos
+                                    join b in DB.Cuotas on a.idcuota equals b.id
+
+                                    where ((b.convenio <= proximoconvenio && a.fechabaja == null) && (a.Importe <= importemenor))
+                                    select new
+                                    {
+                                        Id = a.IdRecibo
+
+                                    };
+                        var result = query.ToList();
+
+                        foreach (var item in result)
+                        {
+                            Recibos recibo = DB.Recibos.Find(item.Id);
+                            ReciboDGV registroDG = new ReciboDGV(recibo);
+                            mostrar.Add(registroDG);
+                        }
+
+
+                        dgv.DataSource = null;
+                        dgv.DataSource = mostrar;
+                        groupBox1.Visible = true;
+
+
+                        //llenar labels
+                        decimal suma = 0;
+                        foreach (ReciboDGV valor in mostrar)
+                        {
+                            suma = suma + valor.Importe;
+                        }
+
+                        lbl_Suma.Text = "Total $ " + suma.ToString();
+
+                        lbl_CantidadRecibos.Text = result.Count().ToString() + " Recibos listos para agregar";
+
+                        //fin llenar labels
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pueden generar buscar importes menores al 1 por este medio");
+                    }
+                    if (dgv.Rows.Count > 0)
+                    {
+                        btn_GenerarPlanilla.Enabled = true;
+
+                    }
+                    dgv.ReadOnly = false;
+                    ActivarFiltrado();
+                }
+                    
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en button \n" + ex.Message);
+            }
+        }
     }
 }

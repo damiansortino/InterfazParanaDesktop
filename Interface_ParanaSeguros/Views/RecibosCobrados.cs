@@ -294,7 +294,6 @@ namespace Interface_ParanaSeguros.Views
 
                 }
 
-
                 foreach (Recibos rec in recibos)
                 {
                     ReciboDGV ver = new ReciboDGV(rec);

@@ -215,6 +215,18 @@
     <Compile Include="Views\Clientes_Form.Designer.cs">
       <DependentUpon>Clientes_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FrmCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmCaja.Designer.cs">
+      <DependentUpon>FrmCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmCobrar_Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmCobrar_Caja.Designer.cs">
+      <DependentUpon>FrmCobrar_Caja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\IngresoReciboManual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +287,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Clientes_Form.resx">
       <DependentUpon>Clientes_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmCaja.resx">
+      <DependentUpon>FrmCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmCobrar_Caja.resx">
+      <DependentUpon>FrmCobrar_Caja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\IngresoReciboManual.resx">
       <DependentUpon>IngresoReciboManual.cs</DependentUpon>

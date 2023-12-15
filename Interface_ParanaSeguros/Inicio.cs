@@ -995,5 +995,27 @@ namespace Interface_ParanaSeguros
                 throw;
             }
         }
+
+        private void btn_Caja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FrmCaja.Instance == null || FrmCaja.Instance.IsDisposed)
+                {
+                    FrmCaja.Instance = new FrmCaja();
+                    FrmCaja.Instance.Show();
+                }
+                else
+                {
+                    FrmCaja.Instance.WindowState = FormWindowState.Maximized;
+                    FrmCaja.Instance.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);;
+            }
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Interface_ParanaSeguros
             this.btn_AvisosVTO = new System.Windows.Forms.Button();
             this.btn_Clientes = new System.Windows.Forms.Button();
             this.btn_Polizas = new System.Windows.Forms.Button();
+            this.btn_Caja = new System.Windows.Forms.Button();
             this.gb_Interfaces.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -228,12 +229,23 @@ namespace Interface_ParanaSeguros
             this.btn_Polizas.UseVisualStyleBackColor = true;
             this.btn_Polizas.Click += new System.EventHandler(this.btn_Polizas_Click);
             // 
+            // btn_Caja
+            // 
+            this.btn_Caja.Location = new System.Drawing.Point(352, 86);
+            this.btn_Caja.Name = "btn_Caja";
+            this.btn_Caja.Size = new System.Drawing.Size(164, 32);
+            this.btn_Caja.TabIndex = 21;
+            this.btn_Caja.Text = "Caja";
+            this.btn_Caja.UseVisualStyleBackColor = true;
+            this.btn_Caja.Click += new System.EventHandler(this.btn_Caja_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(1264, 749);
+            this.Controls.Add(this.btn_Caja);
             this.Controls.Add(this.btn_Polizas);
             this.Controls.Add(this.btn_Clientes);
             this.Controls.Add(this.btn_AvisosVTO);
@@ -276,6 +288,7 @@ namespace Interface_ParanaSeguros
         private System.Windows.Forms.Button btn_AvisosVTO;
         private System.Windows.Forms.Button btn_Clientes;
         private System.Windows.Forms.Button btn_Polizas;
+        private System.Windows.Forms.Button btn_Caja;
     }
 }
 

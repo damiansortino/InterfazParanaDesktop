@@ -69,3 +69,4 @@ D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_Parana
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.IngresoReciboManual.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.Interfaces_Parana.resources
 D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.FrmCaja.resources
+D:\GIT\InterfazParanaSolution\Interface_ParanaSeguros\obj\Debug\Interface_ParanaSeguros.Views.FrmCobrar_Caja.resources

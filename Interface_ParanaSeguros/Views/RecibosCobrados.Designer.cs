@@ -37,6 +37,8 @@ namespace Interface_ParanaSeguros.Views
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.btn_ProcesarPlanilla = new System.Windows.Forms.Button();
             this.linklabel_Path = new System.Windows.Forms.LinkLabel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.lbl_contador = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -125,12 +127,22 @@ namespace Interface_ParanaSeguros.Views
             this.linklabel_Path.Text = "...";
             this.linklabel_Path.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklabel_Path_LinkClicked);
             // 
+            // lbl_contador
+            // 
+            this.lbl_contador.AutoSize = true;
+            this.lbl_contador.Location = new System.Drawing.Point(844, 119);
+            this.lbl_contador.Name = "lbl_contador";
+            this.lbl_contador.Size = new System.Drawing.Size(49, 13);
+            this.lbl_contador.TabIndex = 11;
+            this.lbl_contador.Text = "contador";
+            // 
             // RecibosCobrados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cerrar;
             this.ClientSize = new System.Drawing.Size(1165, 667);
+            this.Controls.Add(this.lbl_contador);
             this.Controls.Add(this.linklabel_Path);
             this.Controls.Add(this.btn_ProcesarPlanilla);
             this.Controls.Add(this.btn_Cerrar);
@@ -163,5 +175,7 @@ namespace Interface_ParanaSeguros.Views
         private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.Button btn_ProcesarPlanilla;
         private System.Windows.Forms.LinkLabel linklabel_Path;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label lbl_contador;
     }
 }

@@ -227,6 +227,9 @@ namespace Interface_ParanaSeguros.Views
             try
             {
                 List<Recibos> recibos = new List<Recibos>();
+                int contador_lineas = 0;
+
+
 
                 using (MartinaPASEntities DB = new MartinaPASEntities())
                 {
@@ -244,7 +247,9 @@ namespace Interface_ParanaSeguros.Views
                                     endoso = c.endoso,
                                     importe = a.Importe,
                                     cuota = b.numero,
-                                    barra = a.codigobarra
+                                    barra = a.codigobarra,
+                                    asociada = c.asociada,
+                                    suplemento = c.suplemento
                                 };
                     var result = query.ToList();
 
@@ -264,14 +269,26 @@ namespace Interface_ParanaSeguros.Views
 
                     foreach (string linea in lineas)
                     {
+                        contador_lineas++;
+
                         var values = linea.Split(';');
                         foreach (var item in result)
                         {
-                            if (((int.Parse(item.barra.Substring(22, 8)).ToString()) == values[1] && item.endoso == int.Parse(values[2])) && item.cuota == int.Parse(values[4]))
+                            if (item.asociada == values[1] && item.cuota == int.Parse(values[4]))
                             {
                                 Recibos nuevo = DB.Recibos.Find(item.id);
                                 recibos.Add(nuevo);
                             }
+                            else
+                            {
+                                if ((int.Parse(item.poliza) == int.Parse(values[1]) && item.suplemento == int.Parse(values[2]))&&(item.cuota == int.Parse(values[4])))
+                                {
+                                    Recibos nuevo = DB.Recibos.Find(item.id);
+                                    recibos.Add(nuevo);
+                                }
+                                
+                            }
+                            
                         }
                     }
 
@@ -297,12 +314,15 @@ namespace Interface_ParanaSeguros.Views
                 {
                     btn_MarcarRendidos.Enabled = true;
                 }
+                lbl_contador.Text = recibos.Count() + " Recibos listos";
+                MessageBox.Show(contador_lineas+" registros encontrados en su planilla");
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
+            
         }
 
         private void linklabel_Path_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

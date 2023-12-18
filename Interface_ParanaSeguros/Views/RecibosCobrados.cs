@@ -265,7 +265,6 @@ namespace Interface_ParanaSeguros.Views
                         }
                     }
 
-                    // revisar aquí el procesador de planillas rendidas
 
                     foreach (string linea in lineas)
                     {
@@ -281,14 +280,14 @@ namespace Interface_ParanaSeguros.Views
                             }
                             else
                             {
-                                if ((int.Parse(item.poliza) == int.Parse(values[1]) && item.suplemento == int.Parse(values[2]))&&(item.cuota == int.Parse(values[4])))
+                                if ((int.Parse(item.poliza) == int.Parse(values[1]) && item.suplemento == int.Parse(values[2])) && (item.cuota == int.Parse(values[4])))
                                 {
                                     Recibos nuevo = DB.Recibos.Find(item.id);
                                     recibos.Add(nuevo);
                                 }
-                                
+
                             }
-                            
+
                         }
                     }
 
@@ -314,14 +313,14 @@ namespace Interface_ParanaSeguros.Views
                     btn_MarcarRendidos.Enabled = true;
                 }
                 lbl_contador.Text = recibos.Count() + " Recibos listos";
-                MessageBox.Show(contador_lineas+" registros encontrados en su planilla");
+                MessageBox.Show(contador_lineas + " registros encontrados en su planilla");
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void linklabel_Path_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -30,8 +30,8 @@ namespace Interface_ParanaSeguros.Views
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_Cobrar = new System.Windows.Forms.Button();
+            this.btn_IniciarCaja = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -40,30 +40,31 @@ namespace Interface_ParanaSeguros.Views
             // groupBox1
             // 
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 264);
+            this.groupBox1.Location = new System.Drawing.Point(0, 305);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1264, 485);
+            this.groupBox1.Size = new System.Drawing.Size(1264, 444);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // button1
+            // btn_Cobrar
             // 
-            this.button1.Location = new System.Drawing.Point(12, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 38);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "1 - Cobrar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Cobrar.Location = new System.Drawing.Point(12, 34);
+            this.btn_Cobrar.Name = "btn_Cobrar";
+            this.btn_Cobrar.Size = new System.Drawing.Size(154, 38);
+            this.btn_Cobrar.TabIndex = 1;
+            this.btn_Cobrar.Text = "1 - Cobrar";
+            this.btn_Cobrar.UseVisualStyleBackColor = true;
+            this.btn_Cobrar.Click += new System.EventHandler(this.btn_Cobrar_Click);
             // 
-            // button2
+            // btn_IniciarCaja
             // 
-            this.button2.Location = new System.Drawing.Point(12, 78);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 38);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "2 - Iniciar Caja";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_IniciarCaja.Location = new System.Drawing.Point(12, 78);
+            this.btn_IniciarCaja.Name = "btn_IniciarCaja";
+            this.btn_IniciarCaja.Size = new System.Drawing.Size(154, 38);
+            this.btn_IniciarCaja.TabIndex = 2;
+            this.btn_IniciarCaja.Text = "2 - Iniciar Caja";
+            this.btn_IniciarCaja.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -101,8 +102,8 @@ namespace Interface_ParanaSeguros.Views
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_IniciarCaja);
+            this.Controls.Add(this.btn_Cobrar);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCaja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -115,8 +116,8 @@ namespace Interface_ParanaSeguros.Views
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_Cobrar;
+        private System.Windows.Forms.Button btn_IniciarCaja;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;

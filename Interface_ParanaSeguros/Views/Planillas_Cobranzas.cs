@@ -945,7 +945,7 @@ namespace Interface_ParanaSeguros.Views
                     dgv.ReadOnly = false;
                     ActivarFiltrado();
                 }
-                    
+
             }
             catch (Exception ex)
             {

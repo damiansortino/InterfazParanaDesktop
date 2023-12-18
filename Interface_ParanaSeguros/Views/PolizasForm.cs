@@ -337,7 +337,7 @@ namespace Interface_ParanaSeguros.Views
 
         private void PolizasForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
 

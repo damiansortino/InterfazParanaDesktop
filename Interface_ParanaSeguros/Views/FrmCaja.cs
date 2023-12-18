@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Interface_ParanaSeguros.Views
 {
@@ -23,6 +15,35 @@ namespace Interface_ParanaSeguros.Views
         public FrmCaja()
         {
             InitializeComponent();
+        }
+
+        private void btn_Cobrar_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                if (ExisteCajaAbierta())
+                {
+                    FrmCobrar_Caja nuevocobro = new FrmCobrar_Caja();
+                    nuevocobro.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe iniciar caja primero");
+                    btn_IniciarCaja.PerformClick();
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private bool ExisteCajaAbierta()
+        {
+            /// programar esto
+            return true;
         }
     }
 }
